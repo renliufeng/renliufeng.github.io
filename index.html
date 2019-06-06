@@ -286,6 +286,221 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://i.lovejojo.ren/2018/10/30/ddd-change-in-trade/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Steven Ren">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Crazy Boy">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/10/30/ddd-change-in-trade/" itemprop="url">ddd-change-in-trade</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-30T17:51:43+08:00">
+                2018-10-30
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/tech/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/10/30/ddd-change-in-trade/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2018/10/30/ddd-change-in-trade/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <blockquote>
+<p>互联网行业追求“快速迭代”，在整个过程中，用户的需求总是善变的，那系统领域中又有哪些是不变与易变的呢。</p>
+</blockquote>
+<p>针对到店综合多种行业各种不同的交易流程进行分析，我们基本可以归纳出：</p>
+<p>领域源于需求，但高于需求。相对于善变的用户需求而言，领域知识和领域模型本身是相对“静止”的，是“不变”的，会随着需求逐步演进。</p>
+<h2 id="问题与挑战">问题与挑战</h2><p>（1）到综行业多，同一种类型的业务差异也很大</p>
+<pre><code>到综涉及结婚、丽人、亲子、休娱等<span class="number">10</span>+大小BU，几十种行业，不同的行业有不同的玩法。即使是同一种预订业务，对于每种行业预订的商品、预订流程、结算流程，都有差异。比如ktv行业重时间包房管理，酒吧预订关注与订座位，体验课关注课程的时间预订。
+</code></pre><p>（2）业务交易形态多样化</p>
+<pre><code>不同的业务交易形态开始产生，比如丽人医美行业客单量大，项目重决策，团购就不太适合，衍生出线上预付定金，到店付尾款的模式。另外丽人美甲、足疗按摩等行业用户层面更愿意带客，所以从团购衍生出拼团的业务形态。另外还有买单的场景， 不同的业务形态，发货的时间点、方式，核销的时间点、结算的逻辑都有差异。
+</code></pre><p>（3）需要支持的平台能力丰富</p>
+<pre><code>交易流程整个环节中，需要对接各样的通用平台能力，例如点评-美团订单中心，客服系统、UGC评价。这么多业务，业务总会有一些定制化需求，如何能够统一快速支持，是一个挑战。
+</code></pre><h2 id="核心思路与解法">核心思路与解法</h2><pre><code>需求是千变万化的，不同的业务，不同的流程，如何能够稳定快速地支撑业务的需求是关键，主要考虑从以下两方面来进行。首先梳理出业务中的不变量，定下整体的领域模型与框架，再考虑通过配置化、开放定制化等能力去支撑业务定制化的需求。
+</code></pre><h3 id="梳理业务中的不变量">梳理业务中的不变量</h3><pre><code>针对第一个问题，项目初期，我们计划搭建一套通用的预订交易流程系统，但是虽然是预订业务，每个<span class="keyword">BU都会有差异。所以我们针对已有的定制开发的KTV预订和足疗预订去做了分析和总结，判断整个预订行业中有哪些是可以抽象出通用能力的。首先我们基于现有的部分需求，整理出每个BU的预订流程图，最后发现对于预订而言，整个流程是相似的，较大的差异性主要在于预订的商品和接单的流程。基于此会发现订单、商品、购买接单、核销、结算这几个大模块都是通用的。整个需要提供较多定制能力的模块主要在于商品模型与接单的模型。确定好方向之后，我们再对于子领域进行更细粒度的分析，在接单模型中，我们将接单规则配置和业务逻辑拆分。接单的逻辑可能会变，但接单领域模型里接单的规则配置确是可以固定不变的。
+</span>
+在通用预订的交易流程系统基本完善之后，我们面临着第二个问题，越来越多的业务形态开始出现。以拼团为例，在预订交易流程的基础上，我们发现整体的交易流程的模型都一样可以支持，有较大差异点仅在于购买流程上。针对于拼团，需要整个拼团拼团成功，才会真正发券。后续的核销、结算流程都是一样的，针对这些不变的领域，仅需要对业务进行扩充，就可以支持。在支持多种交易形态的过程中，我们发现已有的对接的一些平台能力，例如客服、评价、诚信等，都会有些差异。都可以采取一样的思路，先抽象出不变的部分，再针对有变化的部分通过配置化等方式支持特殊的定制。
+</code></pre><h3 id="快速支撑不断变化的需求">快速支撑不断变化的需求</h3><p>（1）不同业务需要支持的不同场景</p>
+<p>模型扩展：拼团等新业务刚出现的时候，原先模型可能无法支持的话，首先会从复用的角度去考虑对模型进行扩展。原先只支持到订单一个层级，抽象出父订单的模型-拼团，一个父订单下面会关联多个子订单。后续类似购物车等形态，都是可以通过此模型进行支持。</p>
+<p>服务扩展：一些预订业务或新业务可能涉及到第三方对接的库存发货管理，我们通过新增服务的方式，将预订的流程开放出去，给到第三方接入的能力。这一块相对独立，支持定制，且不影响主流程。</p>
+<p>（2）多样的平台能力的需求，如何稳定快速支持接入的需求</p>
+<p>每一个新业务接入或者新的交易产生，对于用户中心订单列表、客服订单列表的展示和操作都有些定制需求，用户商户侧的评价也有展示的区别。主要思路：模块服务独立，不影响核心流程。单独子模块，再针对不同的业务提供定制化或者配置化的能力。</p>
+<h2 id="具体方案及拆解">具体方案及拆解</h2><p>整体技术架构解决方案的思路都是从领域与微服务化的思路去考虑，如何能够很好地去分析领域模型和服务拆分，我们主要会从下面几个方向着手。</p>
+<p>（1）梳理业务流程中通用流程节点</p>
+<pre><code>在切分微服务之前，我们要做的第一件事情就是梳理业务流程。不妨找业务领域的专家咨询，通过与他们沟通从而了解真实的业务流程，并将其绘制成流程图。对于过于复杂的业务流程，我们也可单独绘制流程图，并增加相关的流程说明。当然也能提供相应的状态图，用于说明业务流程中所涉及状态的变化过程。花再多时间去分析业务流程都不过分，现在所花的每一分钟都是相当值得的。产品需求是多变的，但是对于交易流程而言，整体的领域模型基本是确定的。我们从目前互联网常见的一些业务着手分析：团购、拼团、预订、电商、外卖、猫眼等。
+</code></pre><p>梳理完每块业务的整体流程后，我们整理下。</p>
+<p>业务形态</p>
+<p>发货模式</p>
+<p>货物模型</p>
+<p>核销方式</p>
+<p>结算方式</p>
+<p>团购</p>
+<p>库存为主</p>
+<p>团购券</p>
+<p>到店验证</p>
+<p>券核销后结算</p>
+<p>拼团</p>
+<p>拼团成功后扣库存</p>
+<p>消费码</p>
+<p>到店验证</p>
+<p>消费码核销后结算</p>
+<p>预订</p>
+<p>库存/商家接单/第三方对接</p>
+<p>消费码</p>
+<p>到店验证</p>
+<p>消费码核销后结算</p>
+<p>电商/外卖</p>
+<p>库存/商家接单</p>
+<p>货物</p>
+<p>用户收到货确认</p>
+<p>订单核销后结算</p>
+<p>猫眼</p>
+<p>库存/商家接单</p>
+<p>消费码/实体票</p>
+<p>到店验证/收到货确认</p>
+<p>订单核销后结算</p>
+<p>通过整个交易流程的分析，大概抽象出来都是下面这个流程，每一个模块会有类似，也有差异。</p>
+<p>（2）梳理出系统各种聚合功能模块</p>
+<pre><code>我们可以对系统的功能进行一个发散的整理，最终明确整个系统的核心“用户”。比如交易流程，核心“用户”就是订单，整套系统都是围绕着订单在走。
+</code></pre><p>（3）归纳整理出业务的整体框架</p>
+<p>基于上面的分析，我们可以整理出整块交易流程业务的整体框架。</p>
+<p>（4）抽取公共服务（不变）</p>
+<pre><code>一般服务拆分首先考虑横向拆分。按照不同的业务领域进行拆分，例如订单、商品、消费码、结算等，形成独立的业务领域微服务集群。其次，要做好微服务的分层：梳理和抽取核心应用、公共应用，作为独立的服务下沉到核心和公共能力层，逐渐形成稳定的服务中心，使前端应用能更快速的响应多变的市场需求。在业务流程中与业务不太相关的部分，我们可考虑将其剥离出来，并形成公共服务。例如，价格服务、库存管理服务、销量服务其他第三方接口等。一般情况下，抽取的公共服务都不太会经常变化，所以“一个月内是否会有频繁改动”这也是我们抽取公共服务的一个判断标准。我们一定要想办法将不变的东西从可变的世界中抽取出来。每种公共服务都对应一个微服务，每个微服务都有相关API，方便其他服务调用。目前公司推动的服务化就是在完善这方面的基础建设。
+</code></pre><p>（5）定义业务服务（易变）</p>
+<pre><code>当公共服务抽取完毕后，业务流程中剩下来的部分就是业务服务了。建议刚开始实施项目的时候，不需要将业务服务的边界切得太细，可以考虑先“大切几块”，但需要确保每个服务之间尽量不要有依赖关系。换句话说，每个服务都是独立的，虽然此时服务的块头可能比较大。目前交易侧主要分了几块比较大的服务，后面针对丰富的需求可以再逐渐不断扩张。我们先确保这些大块头服务可以运行在微服务基础设施上，再不断将它们进行细化，拆解为更小的服务。
+</code></pre><h2 id="结果及收益">结果及收益</h2><h3 id="总结">总结</h3><pre><code>多变的业务中，我们会发现核心流程基本不变，分支流程与业务逻辑是易变的。
+</code></pre><p>针对于核心流程，如果有些需要品类与产品形态支持定制的，尽量通过配置化思路去解决。</p>
+<p>而对于一些易变的流程或页面，可以分模块拆分出来，控制每个模块的影响范围，做到不涉及核心流程。</p>
+<h3 id="效果">效果</h3><pre><code>目前交易流程已经支持了预订、点单、扫码付、一口价、拼团等多种业务形态，接入大小业务<span class="number">30</span>+，日订单量<span class="number">10</span>W，涉及到综所有BU。
+</code></pre><p>通过对通用逻辑的抽象，目前交易流程新增业务1~2人周支持开发与联调即可。</p>
+<p>能够在复用通用能力的同时，支持业务的定制能力。</p>
+<h3 id="未来的方向">未来的方向</h3><pre><code>目前领域模型的划分还是相对较粗，业务订单和统一订单的分工职责需要明确。
+</code></pre><p>应用架构上，会针对不断变化的交易形态，拆分出更多业务逻辑层的服务出来。同时，后续也会提供越来越多的交易有关的平台能力提供给业务侧去使用。</p>
+<p>针对业务复杂变化较大的发货服务领域，会做更细的拆分，把其中接单、第三方对接等等抽象出公用的基础服务，在上层支持丰富的业务定逻辑。</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://i.lovejojo.ren/2018/06/06/cros-introduce/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -427,6 +642,161 @@
 <p>上面头信息中，Access-Control-Allow-Origin字段是每次回应都必定包含的。</p>
 <h2 id="与JSONP的比较">与JSONP的比较</h2><p>CORS与JSONP的使用目的相同，但是比JSONP更强大。</p>
 <p>JSONP只支持GET请求，CORS支持所有类型的HTTP请求。JSONP的优势在于支持老式浏览器，以及可以向不支持CORS的网站请求数据。</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://i.lovejojo.ren/2017/06/06/hexo-insert-picture/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Steven Ren">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Crazy Boy">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/06/06/hexo-insert-picture/" itemprop="url">hexo博客中如何插入图片</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-06-06T17:57:55+08:00">
+                2017-06-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/tech/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/06/06/hexo-insert-picture/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/06/06/hexo-insert-picture/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>在网上查了一下有以下几种方式往hexo文章中插入图片</p>
+<p>## 本地引用</p>
+<h3 id="绝对路径">绝对路径</h3><p>当Hexo项目中只用到少量图片时，可以将图片统一放在source/images文件夹中，通过markdown语法访问它们。对于source/images/image.jpg这张图片可以用以下语法访问到<br><figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">!<span class="attr_selector">[]</span>(/images/image.jpg)</span><br></pre></td></tr></table></figure></p>
+<p>图片既可以在首页内容中访问到，也可以在文章正文中访问到。</p>
+<h3 id="相对路径">相对路径</h3><p>图片除了可以放在统一的images文件夹中，还可以放在文章自己的目录中。文章的目录可以通过配置博客根目录下的_config.yml来生成。<br><figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">post_asset_folder:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure></p>
+<p>将_config.yml文件中的配置项post_asset_folder设为true后，执行命令$ hexo new post_name，在source/_posts中会生成文章post_name.md和同名文件夹post_name。将图片资源放在post_name中，文章就可以使用相对路径引用图片资源了。_posts/post_name/image.jpg这张照片可以用以下方式访问：<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">!<span class="attr_selector">[]</span>(<span class="tag">image</span><span class="class">.jpg</span>)</span><br></pre></td></tr></table></figure></p>
+<p>上述markdown的引用方式，图片只能在文章中显示，但无法在首页中正常显示。<br>如果希望图片在文章和首页中同时显示，可以使用标签插件语法。_posts/post_name/image.jpg这张照片可以用以下方式访问：</p>
+
+<h2 id="CDN引用">CDN引用</h2><p>除了在本地存储图片，还可以将图片上传到一些免费的CDN服务中。因国内访问github速度较慢，所以将突破放到国内图床上，然后引用外链是常用的方法。<br>常用图床总结：<a href="https://sspai.com/post/40499" target="_blank" rel="external">https://sspai.com/post/40499</a></p>
+<p>图床，也就是专门提供存储图片的地方，我们只要通过图床提供的 API 接口，把图片上传上去，就可以通过外链访问了，根本不用操心图片是怎么存的，硬盘空间不够了，硬盘坏了，访问速度比较慢等等问题，这些图床都会帮我们搞定，他们会用各种技术帮我们做图片相关的优化和服务，比如多机互备、CDN 加速、图片处理、图片鉴黄、文本识别等等。<br>当然，图床也是有缺点的，当所有人都把图片存在同一个图床上，万一有一天图床真挂了，那所有图片就都无法访问了，虽然这种情况的概率很低，但并不等于不会发生<br>目前图床可以分为两种，一种是公共图床，一种是自建图床。公共图床也就是利用公共服务的图片上传接口，来提供图片外链的服务，比如新浪微博。自建图床，也就是利用各大云服务商提供的存储空间或者自己在 VPS 上使用开源软件来搭建图床，存储图片，生成外链提供访问，比如七牛、Lychee 开源自建图床方案。</p>
+<p>微博图床（Chrome浏览器有个“新浪微博图床”插件，可以自动生成markdown链接）简单方便<br>七牛：需要注册且实名认证等太麻烦，放弃<br>腾讯云等云存储服务，需要先将照片放到云盘，然后找到超链接，然后粘贴到文章。太麻烦，放弃。<br>【强烈推荐！！！】ipic 工具，具体用法请谷歌，支持监控剪贴板，一键上传到微博图床，免费版默认是微博图床，支持七牛云等，下载地址: <a href="https://itunes.apple.com/cn/app/id1101244278?mt=12" target="_blank" rel="external">https://itunes.apple.com/cn/app/id1101244278?mt=12</a></p>
+<h2 id="使用GitHub存储博客图片">使用GitHub存储博客图片</h2><p>创建一个空的repo<br>然后将图片push到repo中<br>点击图片进去，有个download，右键复制链接<br>将链接插入文章<br><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">![<span class="link_label">logo</span>](<span class="link_url">https://github.com/xxxx/xx.jpg</span>)</span><br></pre></td></tr></table></figure></p>
 
           
         
@@ -754,300 +1124,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://i.lovejojo.ren/2016/06/13/project-transfer-guide/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Steven Ren">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Crazy Boy">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2016/06/13/project-transfer-guide/" itemprop="url">项目交接说明</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-06-13T15:41:37+08:00">
-                2016-06-13
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/tech/" itemprop="url" rel="index">
-                    <span itemprop="name">技术</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2016/06/13/project-transfer-guide/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/06/13/project-transfer-guide/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="交接内容">交接内容</h2><p>项目git、数据库、作业、页面、权限<br>交接时间点<br>需求设计等文档<br>case情况</p>
-<h2 id="交接关键点">交接关键点</h2><p>1.确认交接时间范围，交接完成之前需求、case均由前团队负责，交接之后需求、Case由新团队负责。</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://i.lovejojo.ren/2015/12/23/apache-httpclient-guide/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Steven Ren">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Crazy Boy">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2015/12/23/apache-httpclient-guide/" itemprop="url">Apache HttpClient 使用备忘</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2015-12-23T16:58:31+08:00">
-                2015-12-23
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/tech/" itemprop="url" rel="index">
-                    <span itemprop="name">技术</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2015/12/23/apache-httpclient-guide/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/12/23/apache-httpclient-guide/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <blockquote>
-<p>HttpClient是Apache Jakarta Common下的子项目，用来提供高效的、最新的、功能丰富的支持HTTP协议的客户端编程工具包，并且它支持HTTP协议最新的版本和建议。HttpClient相比传统JDK自带的URLConnection，增加了易用性和灵活性，它不仅使客户端发送Http请求变得容易，而且也方便了开发人员测试接口（基于Http协议的），既提高了开发的效率，也方便提高代码的健壮性。<br>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2015/12/23/apache-httpclient-guide/#далее" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1097,7 +1173,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">13</span>
+                <span class="site-state-item-count">15</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -1119,7 +1195,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">17</span>
+                <span class="site-state-item-count">19</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

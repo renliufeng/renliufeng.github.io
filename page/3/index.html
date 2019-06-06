@@ -286,6 +286,300 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://i.lovejojo.ren/2015/11/27/hexo-qiniu/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Steven Ren">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Crazy Boy">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2015/11/27/hexo-qiniu/" itemprop="url">使用七牛为Hexo存储图片和CDN加速</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2015-11-27T15:48:56+08:00">
+                2015-11-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/tech/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2015/11/27/hexo-qiniu/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/11/27/hexo-qiniu/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>使用七牛为Hexo存储图片<br>Hexo文章中的图片，可以放在本地，然后和静态文件一起发布（部署）到你的空间。我以前就是这么干的，见这里。<br>今天又看Hexo官方文档，有支持七牛的插件，尝试了一下，发现是不可用的，因为插件代码中有一些路径有问题，我已经提交了bug给作者。不过因此我开始试用了七牛，感觉一些功能还是很不错的，而且10GB免费存储，每月10GB免费下载流量…，用做博客图片等资源存储，正合适。</p>
+<p>注册和安装七牛工具<br>首先需要申请七牛账号，如果你也需要申请，请访问这个链接（<a href="https://portal.qiniu.com/signup?code=3lb1qxh8ee5oy），" target="_blank" rel="external">https://portal.qiniu.com/signup?code=3lb1qxh8ee5oy），</a> 这样我可以获得更多的流量（5GB）。<br>然后登录七牛网站，按照官网说明创建空间。比如我创建的空间是shiqichan，那么我上传的文件，就可以通过这样的URL访问：<br><code>http://shiqichan.qiniudn.com/myImg.png</code><br>我上传图片文件，使用了七牛提供的命令行工具，当然你也可以使用七牛提供的web界面上传。使用命令行上传的好处是，批量增量的上传。可在这里下载，有Mac版本。<br>在Mac下的安装办法，解压缩到某个目录下，比如我是存放在/opt/tools/qrsync下了。设置PATH：<br><code>sudo vim /etc/paths</code><br>将qrsync路径加进去，这样就可以直接输入命令访问了。<br>Hexo使用七牛图片的步骤<br>我是在blog目录下，创建了个cdn目录，用来存放图片等资源文件。<br>hexo的配置文件，默认日志的url方式是：<br><code>http://yoursite/year/month/day/your-post-name</code><br>做了调整，在_config.yml文件中修改：<br><code>permalink: :title/</code><br>然后，在cdn目录下，创建日志名称的目录，比如本文的目录名称就是：<br><code>use-qiniu-store-image-for-hexo</code><br>在这个目录下放置本文的图片，然后使用qrsync命令同步到七牛。再通过七牛的web界面复制出这个图片的url，比如：<br><code>http://shiqichan.qiniudn.com/use-qiniu-store-image-for-hexo/qiniu.png</code><br>最后，就是在日志文件中加入image标签：<br><code>![](http://shiqichan.qiniudn.com/use-qiniu-store-image-for-hexo/qiniu.png)</code><br>样式上对图片的处理<br>这样做显示的图片，有个问题，有时候显示图片太大了。<br>查了一下hexo默认样式有关图片的设置（见thems/light/source/css/_partial/article.styl）：<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">img</span>, <span class="tag">video</span></span><br><span class="line">  <span class="attribute">max-width</span> <span class="number">300px</span></span><br><span class="line">  <span class="attribute">height</span> <span class="attribute">auto</span></span><br><span class="line">  <span class="attribute">border</span> <span class="attribute">none</span></span><br></pre></td></tr></table></figure></p>
+<p>这是<a href="http://learnboost.github.io/stylus/" target="_blank" rel="external">stylus</a>，用来生成css文件的。对图片宽度做了约束，但没有对图片高度做约束，如果宽度不高而高度很大，就会出现问题。<br>改为：<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">box-shadow</span><span class="params">(args…)</span></span></span><br><span class="line">-webkit-<span class="attribute">box-shadow</span> args</span><br><span class="line">-moz-<span class="attribute">box-shadow</span> args</span><br><span class="line"><span class="attribute">box-shadow</span> args</span><br><span class="line"><span class="tag">img</span>, <span class="tag">video</span></span><br><span class="line"><span class="attribute">max-width</span> <span class="number">300px</span></span><br><span class="line"><span class="attribute">max-height</span> <span class="number">300px</span></span><br><span class="line"><span class="attribute">border</span> <span class="attribute">none</span></span><br><span class="line"><span class="attribute">box-shadow</span> <span class="number">2px</span> <span class="number">2px</span> <span class="number">3px</span> <span class="hexcolor">#aaaaaa</span></span><br></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://i.lovejojo.ren/2015/11/27/blog-seo/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Steven Ren">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Crazy Boy">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2015/11/27/blog-seo/" itemprop="url">个人博客SEO技巧</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2015-11-27T11:43:33+08:00">
+                2015-11-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/tech/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2015/11/27/blog-seo/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/11/27/blog-seo/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <blockquote>
+<p>搜索引擎优化(search engine optimization,简称seo)：指遵循搜索引擎的搜索原理，对网站结构、网页文字语言和站点间互动外交略等进行合理规划部署，以改善网站在搜索引擎的搜索表现，进而增加客户发现并访问网站的可能性的这样一个过程. 搜索引擎优化也是一种科学的发展观和方法论，它随着搜索引擎的发展而发展, 同时也促进了搜索引擎的发展。</p>
+</blockquote>
+<p>对博客进行搜索引擎优化也就是博客内容被搜索引擎收录及优先排序，以此增加博客的点击率和曝光度，最终提升博客的综合能力。写博客的人，内容不仅要对用户友好，让大部分人都能看懂，而且也要对搜索引擎友好。</p>
+<p>下面提供一些技巧<br>1：博客要经常保持更新，文字始终紧紧围绕关键字，围绕网站主题。<br>2：SEO优化重点以文章内容页优化为主。<br>3：适当给每个页面增加keyword(关键词)、Description(页面描述)、robots(搜索引擎抓取器)等标签。<br>4：在新文章中适当增加一些老文章的链接，文章的内部链接一定要自然。<br>5：新博客可以建立单一关键词策略，以增强网站对搜索引擎的权威性。如卢松松博客建立初期只有一个”网站设计”关键词。<br>6：栏目分类尽量使用目录形式。如：<a href="http://lusongsong.com/youhua/而不是http://lusongsong.com/youhua.html" target="_blank" rel="external">http://lusongsong.com/youhua/而不是http://lusongsong.com/youhua.html</a><br>7：可以在网页底部加上站点地图sitemap，HTML格式是给用户看的，XML格式是给搜索引擎看的。<br>8：比较重要文章的URL可以使用拼音、英文和分割线等网址结构。<br>9：外部链接建设很重要，新博客推荐使用工具<a href="http://tool.lusongsong.com/seo/" target="_blank" rel="external">http://tool.lusongsong.com/seo/</a><br>10：垃圾留言一定要删除，非常影响排名。<br>11：记得给每个博文插图加上和文章内容相关的alt信息，并在图片周围添加相关信息。<br>12：文章中相同的关键词不能过多，如果非要堆砌关键词，可适当使用长尾关键词。<br>13：每篇文章的结尾处可加入“原创文章如转载，请注明出处”“本文首发于XXX网站”等信息，对SEO有一定帮助。<br>14：通过添加TAG标签可以增强主题的相关性和被搜索的概率。<br>15：文章的Title最好以“文章标题-博客名称”形式出现。<br>16：文章标题最好能出现一次关键字。<br>17：关键字最好在第一段或最后一段能够出现。<br>18：不要选择非常热门的关键词。<br>19：不要一次性增加大量连接，更不要一次性删减大量连接。<br>20：坚持!</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://i.lovejojo.ren/2015/11/25/git-ssh-key/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -804,7 +1098,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">13</span>
+                <span class="site-state-item-count">15</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -826,7 +1120,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">17</span>
+                <span class="site-state-item-count">19</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
