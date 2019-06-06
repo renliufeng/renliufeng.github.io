@@ -1,0 +1,879 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Apache,HTTP,HttpClient," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Crazy Boy" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="HttpClient是Apache Jakarta Common下的子项目，用来提供高效的、最新的、功能丰富的支持HTTP协议的客户端编程工具包，并且它支持HTTP协议最新的版本和建议。HttpClient相比传统JDK自带的URLConnection，增加了易用性和灵活性，它不仅使客户端发送Http请求变得容易，而且也方便了开发人员测试接口（基于Http协议的），既提高了开发的效率，也方便提高代">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Apache HttpClient 使用备忘">
+<meta property="og:url" content="http://i.lovejojo.ren/2015/12/23/apache-httpclient-guide/index.html">
+<meta property="og:site_name" content="Crazy Boy">
+<meta property="og:description" content="HttpClient是Apache Jakarta Common下的子项目，用来提供高效的、最新的、功能丰富的支持HTTP协议的客户端编程工具包，并且它支持HTTP协议最新的版本和建议。HttpClient相比传统JDK自带的URLConnection，增加了易用性和灵活性，它不仅使客户端发送Http请求变得容易，而且也方便了开发人员测试接口（基于Http协议的），既提高了开发的效率，也方便提高代">
+<meta property="og:updated_time" content="2019-06-06T08:56:39.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Apache HttpClient 使用备忘">
+<meta name="twitter:description" content="HttpClient是Apache Jakarta Common下的子项目，用来提供高效的、最新的、功能丰富的支持HTTP协议的客户端编程工具包，并且它支持HTTP协议最新的版本和建议。HttpClient相比传统JDK自带的URLConnection，增加了易用性和灵活性，它不仅使客户端发送Http请求变得容易，而且也方便了开发人员测试接口（基于Http协议的），既提高了开发的效率，也方便提高代">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://i.lovejojo.ren/2015/12/23/apache-httpclient-guide/"/>
+
+
+
+
+
+  <title>Apache HttpClient 使用备忘 | Crazy Boy</title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?4e1f32e9bda25dbd8d36f0a2f6b9f338";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Crazy Boy</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://i.lovejojo.ren/2015/12/23/apache-httpclient-guide/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Steven Ren">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Crazy Boy">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Apache HttpClient 使用备忘</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2015-12-23T16:58:31+08:00">
+                2015-12-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/tech/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2015/12/23/apache-httpclient-guide/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/12/23/apache-httpclient-guide/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>HttpClient是Apache Jakarta Common下的子项目，用来提供高效的、最新的、功能丰富的支持HTTP协议的客户端编程工具包，并且它支持HTTP协议最新的版本和建议。HttpClient相比传统JDK自带的URLConnection，增加了易用性和灵活性，它不仅使客户端发送Http请求变得容易，而且也方便了开发人员测试接口（基于Http协议的），既提高了开发的效率，也方便提高代码的健壮性。<br><a id="more"></a></p>
+</blockquote>
+<h3 id="版本依赖">版本依赖</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">dependency</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="title">groupId</span>&gt;</span>org.apache.httpcomponents<span class="tag">&lt;/<span class="title">groupId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="title">artifactId</span>&gt;</span>httpclient<span class="tag">&lt;/<span class="title">artifactId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="title">version</span>&gt;</span>4.5.1<span class="tag">&lt;/<span class="title">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="特性">特性</h3><ol>
+<li>基于标准、纯净的java语言。实现了Http1.0和Http1.1</li>
+<li>以可扩展的面向对象的结构实现了Http全部的方法（GET, POST, PUT, DELETE, HEAD, OPTIONS, and TRACE）。</li>
+<li>支持HTTPS协议。</li>
+<li>通过Http代理建立透明的连接。</li>
+<li>利用CONNECT方法通过Http代理建立隧道的https连接。</li>
+<li>Basic, Digest, NTLMv1, NTLMv2, NTLM2 Session, SNPNEGO/Kerberos认证方案。</li>
+<li>插件式的自定义认证方案。</li>
+<li>便携可靠的套接字工厂使它更容易的使用第三方解决方案。</li>
+<li>连接管理器支持多线程应用。支持设置最大连接数，同时支持设置每个主机的最大连接数，发现并关闭过期的连接。</li>
+<li>自动处理Set-Cookie中的Cookie。</li>
+<li>插件式的自定义Cookie策略。</li>
+<li>Request的输出流可以避免流中内容直接缓冲到socket服务器。</li>
+<li>Response的输入流可以有效的从socket服务器直接读取相应内容。</li>
+<li>在http1.0和http1.1中利用KeepAlive保持持久连接。</li>
+<li>直接获取服务器发送的response code和 headers。</li>
+<li>设置连接超时的能力。</li>
+<li>实验性的支持http1.1 response caching。</li>
+<li>源代码基于Apache License 可免费获取。</li>
+</ol>
+<h3 id="使用方法">使用方法</h3><p>使用HttpClient发送请求、接收响应很简单，一般需要如下几步即可。</p>
+<ol>
+<li>创建HttpClient对象。</li>
+<li>创建请求方法的实例，并指定请求URL。如果需要发送GET请求，创建HttpGet对象；如果需要发送POST请求，创建HttpPost对象。</li>
+<li>如果需要发送请求参数，可调用HttpGet、HttpPost共同的setParams(HetpParams params)方法来添加请求参数；对于HttpPost对象而言，也可调用setEntity(HttpEntity entity)方法来设置请求参数。</li>
+<li>调用HttpClient对象的execute(HttpUriRequest request)发送请求，该方法返回一个HttpResponse。</li>
+<li>调用HttpResponse的getAllHeaders()、getHeaders(String name)等方法可获取服务器的响应头；调用HttpResponse的getEntity()方法可获取HttpEntity对象，该对象包装了服务器的响应内容。程序可通过该对象获取服务器的响应内容。</li>
+<li>释放连接。无论执行方法是否成功，都必须释放连接</li>
+</ol>
+<h3 id="代码示例">代码示例</h3><figure class="highlight processing"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br><span class="line">252</span><br><span class="line">253</span><br><span class="line">254</span><br><span class="line">255</span><br><span class="line">256</span><br><span class="line">257</span><br><span class="line">258</span><br><span class="line">259</span><br><span class="line">260</span><br><span class="line">261</span><br><span class="line">262</span><br><span class="line">263</span><br><span class="line">264</span><br><span class="line">265</span><br><span class="line">266</span><br><span class="line">267</span><br><span class="line">268</span><br><span class="line">269</span><br><span class="line">270</span><br><span class="line">271</span><br><span class="line">272</span><br><span class="line">273</span><br><span class="line">274</span><br><span class="line">275</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.test;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.apache.http.HttpEntity;</span><br><span class="line"><span class="keyword">import</span> org.apache.http.ParseException;</span><br><span class="line"><span class="keyword">import</span> org.apache.http.client.ClientProtocolException;</span><br><span class="line"><span class="keyword">import</span> org.apache.http.client.entity.UrlEncodedFormEntity;</span><br><span class="line"><span class="keyword">import</span> org.apache.http.client.methods.CloseableHttpResponse;</span><br><span class="line"><span class="keyword">import</span> org.apache.http.client.methods.HttpGet;</span><br><span class="line"><span class="keyword">import</span> org.apache.http.client.methods.HttpPost;</span><br><span class="line"><span class="keyword">import</span> org.apache.http.conn.ssl.SSLConnectionSocketFactory;</span><br><span class="line"><span class="keyword">import</span> org.apache.http.conn.ssl.SSLContexts;</span><br><span class="line"><span class="keyword">import</span> org.apache.http.conn.ssl.TrustSelfSignedStrategy;</span><br><span class="line"><span class="keyword">import</span> org.apache.http.entity.ContentType;</span><br><span class="line"><span class="keyword">import</span> org.apache.http.entity.mime.MultipartEntityBuilder;</span><br><span class="line"><span class="keyword">import</span> org.apache.http.entity.mime.content.FileBody;</span><br><span class="line"><span class="keyword">import</span> org.apache.http.entity.mime.content.StringBody;</span><br><span class="line"><span class="keyword">import</span> org.apache.http.impl.client.CloseableHttpClient;</span><br><span class="line"><span class="keyword">import</span> org.apache.http.impl.client.HttpClients;</span><br><span class="line"><span class="keyword">import</span> org.apache.http.message.BasicNameValuePair;</span><br><span class="line"><span class="keyword">import</span> org.apache.http.util.EntityUtils;</span><br><span class="line"><span class="keyword">import</span> org.junit.Test;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> javax.net.ssl.SSLContext;</span><br><span class="line"><span class="keyword">import</span> java.io.File;</span><br><span class="line"><span class="keyword">import</span> java.io.FileInputStream;</span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"><span class="keyword">import</span> java.io.UnsupportedEncodingException;</span><br><span class="line"><span class="keyword">import</span> java.security.KeyManagementException;</span><br><span class="line"><span class="keyword">import</span> java.security.KeyStore;</span><br><span class="line"><span class="keyword">import</span> java.security.KeyStoreException;</span><br><span class="line"><span class="keyword">import</span> java.security.NoSuchAlgorithmException;</span><br><span class="line"><span class="keyword">import</span> java.security.cert.CertificateException;</span><br><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> class HttpClientTest &#123;</span><br><span class="line"></span><br><span class="line">    @Test</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> jUnitTest() &#123;</span><br><span class="line">        <span class="built_in">get</span>();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span><br><span class="line">     * HttpClient连接SSL</span><br><span class="line">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> ssl() &#123;</span><br><span class="line">        CloseableHttpClient httpclient = <span class="keyword">null</span>;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            KeyStore trustStore = KeyStore.getInstance(KeyStore.getDefaultType());</span><br><span class="line">            FileInputStream instream = <span class="keyword">new</span> FileInputStream(<span class="keyword">new</span> File(<span class="string">"d:\\tomcat.keystore"</span>));</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                <span class="comment">// 加载keyStore d:\\tomcat.keystore  </span></span><br><span class="line">                trustStore.load(instream, <span class="string">"123456"</span>.toCharArray());</span><br><span class="line">            &#125; <span class="keyword">catch</span> (CertificateException e) &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">                <span class="keyword">try</span> &#123;</span><br><span class="line">                    instream.close();</span><br><span class="line">                &#125; <span class="keyword">catch</span> (Exception ignore) &#123;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">// 相信自己的CA和所有自签名的证书</span></span><br><span class="line">            SSLContext sslcontext = SSLContexts.custom().loadTrustMaterial(trustStore, <span class="keyword">new</span> TrustSelfSignedStrategy()).build();</span><br><span class="line">            <span class="comment">// 只允许使用TLSv1协议</span></span><br><span class="line">            SSLConnectionSocketFactory sslsf = <span class="keyword">new</span> SSLConnectionSocketFactory(sslcontext, <span class="keyword">new</span> <span class="keyword">String</span>[]&#123;<span class="string">"TLSv1"</span>&#125;, <span class="keyword">null</span>,</span><br><span class="line">                    SSLConnectionSocketFactory.BROWSER_COMPATIBLE_HOSTNAME_VERIFIER);</span><br><span class="line">            httpclient = HttpClients.custom().setSSLSocketFactory(sslsf).build();</span><br><span class="line">            <span class="comment">// 创建http请求(get方式)</span></span><br><span class="line">            HttpGet httpget = <span class="keyword">new</span> HttpGet(<span class="string">"https://localhost:8443/myDemo/Ajax/serivceJ.action"</span>);</span><br><span class="line">            System.out.<span class="built_in">println</span>(<span class="string">"executing request"</span> + httpget.getRequestLine());</span><br><span class="line">            CloseableHttpResponse response = httpclient.execute(httpget);</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                HttpEntity entity = response.getEntity();</span><br><span class="line">                System.out.<span class="built_in">println</span>(<span class="string">"----------------------------------------"</span>);</span><br><span class="line">                System.out.<span class="built_in">println</span>(response.getStatusLine());</span><br><span class="line">                <span class="keyword">if</span> (entity != <span class="keyword">null</span>) &#123;</span><br><span class="line">                    System.out.<span class="built_in">println</span>(<span class="string">"Response content length: "</span> + entity.getContentLength());</span><br><span class="line">                    System.out.<span class="built_in">println</span>(EntityUtils.toString(entity));</span><br><span class="line">                    EntityUtils.consume(entity);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">                response.close();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (ParseException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125; <span class="keyword">catch</span> (KeyManagementException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125; <span class="keyword">catch</span> (NoSuchAlgorithmException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125; <span class="keyword">catch</span> (KeyStoreException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">            <span class="keyword">if</span> (httpclient != <span class="keyword">null</span>) &#123;</span><br><span class="line">                <span class="keyword">try</span> &#123;</span><br><span class="line">                    httpclient.close();</span><br><span class="line">                &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">                    e.printStackTrace();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span><br><span class="line">     * post方式提交表单（模拟用户登录请求）</span><br><span class="line">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> postForm() &#123;</span><br><span class="line">        <span class="comment">// 创建默认的httpClient实例.  </span></span><br><span class="line">        CloseableHttpClient httpclient = HttpClients.createDefault();</span><br><span class="line">        <span class="comment">// 创建httppost  </span></span><br><span class="line">        HttpPost httppost = <span class="keyword">new</span> HttpPost(<span class="string">"http://localhost:8080/myDemo/Ajax/serivceJ.action"</span>);</span><br><span class="line">        <span class="comment">// 创建参数队列  </span></span><br><span class="line">        List&lt;namevaluepair&gt; formparams = <span class="keyword">new</span> ArrayList&lt;namevaluepair&gt;();</span><br><span class="line">        formparams.<span class="built_in">add</span>(<span class="keyword">new</span> BasicNameValuePair(<span class="string">"username"</span>, <span class="string">"admin"</span>));</span><br><span class="line">        formparams.<span class="built_in">add</span>(<span class="keyword">new</span> BasicNameValuePair(<span class="string">"password"</span>, <span class="string">"123456"</span>));</span><br><span class="line">        UrlEncodedFormEntity uefEntity;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            uefEntity = <span class="keyword">new</span> UrlEncodedFormEntity(formparams, <span class="string">"UTF-8"</span>);</span><br><span class="line">            httppost.setEntity(uefEntity);</span><br><span class="line">            System.out.<span class="built_in">println</span>(<span class="string">"executing request "</span> + httppost.getURI());</span><br><span class="line">            CloseableHttpResponse response = httpclient.execute(httppost);</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                HttpEntity entity = response.getEntity();</span><br><span class="line">                <span class="keyword">if</span> (entity != <span class="keyword">null</span>) &#123;</span><br><span class="line">                    System.out.<span class="built_in">println</span>(<span class="string">"--------------------------------------"</span>);</span><br><span class="line">                    System.out.<span class="built_in">println</span>(<span class="string">"Response content: "</span> + EntityUtils.toString(entity, <span class="string">"UTF-8"</span>));</span><br><span class="line">                    System.out.<span class="built_in">println</span>(<span class="string">"--------------------------------------"</span>);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">                response.close();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (ClientProtocolException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125; <span class="keyword">catch</span> (UnsupportedEncodingException e1) &#123;</span><br><span class="line">            e1.printStackTrace();</span><br><span class="line">        &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">            <span class="comment">// 关闭连接,释放资源  </span></span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                httpclient.close();</span><br><span class="line">            &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span><br><span class="line">     * 发送 post请求访问本地应用并根据传递参数不同返回不同结果</span><br><span class="line">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> post() &#123;</span><br><span class="line">        <span class="comment">// 创建默认的httpClient实例.  </span></span><br><span class="line">        CloseableHttpClient httpclient = HttpClients.createDefault();</span><br><span class="line">        <span class="comment">// 创建httppost  </span></span><br><span class="line">        HttpPost httppost = <span class="keyword">new</span> HttpPost(<span class="string">"http://localhost:8080/myDemo/Ajax/serivceJ.action"</span>);</span><br><span class="line">        <span class="comment">// 创建参数队列  </span></span><br><span class="line">        List&lt;namevaluepair&gt; formparams = <span class="keyword">new</span> ArrayList&lt;namevaluepair&gt;();</span><br><span class="line">        formparams.<span class="built_in">add</span>(<span class="keyword">new</span> BasicNameValuePair(<span class="string">"type"</span>, <span class="string">"house"</span>));</span><br><span class="line">        UrlEncodedFormEntity uefEntity;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            uefEntity = <span class="keyword">new</span> UrlEncodedFormEntity(formparams, <span class="string">"UTF-8"</span>);</span><br><span class="line">            httppost.setEntity(uefEntity);</span><br><span class="line">            System.out.<span class="built_in">println</span>(<span class="string">"executing request "</span> + httppost.getURI());</span><br><span class="line">            CloseableHttpResponse response = httpclient.execute(httppost);</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                HttpEntity entity = response.getEntity();</span><br><span class="line">                <span class="keyword">if</span> (entity != <span class="keyword">null</span>) &#123;</span><br><span class="line">                    System.out.<span class="built_in">println</span>(<span class="string">"--------------------------------------"</span>);</span><br><span class="line">                    System.out.<span class="built_in">println</span>(<span class="string">"Response content: "</span> + EntityUtils.toString(entity, <span class="string">"UTF-8"</span>));</span><br><span class="line">                    System.out.<span class="built_in">println</span>(<span class="string">"--------------------------------------"</span>);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">                response.close();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (ClientProtocolException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125; <span class="keyword">catch</span> (UnsupportedEncodingException e1) &#123;</span><br><span class="line">            e1.printStackTrace();</span><br><span class="line">        &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">            <span class="comment">// 关闭连接,释放资源  </span></span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                httpclient.close();</span><br><span class="line">            &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span><br><span class="line">     * 发送 get请求</span><br><span class="line">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="built_in">get</span>() &#123;</span><br><span class="line">        CloseableHttpClient httpclient = HttpClients.createDefault();</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="comment">// 创建httpget.  </span></span><br><span class="line">            HttpGet httpget = <span class="keyword">new</span> HttpGet(<span class="string">"http://www.baidu.com/"</span>);</span><br><span class="line">            System.out.<span class="built_in">println</span>(<span class="string">"executing request "</span> + httpget.getURI());</span><br><span class="line">            <span class="comment">// 执行get请求.  </span></span><br><span class="line">            CloseableHttpResponse response = httpclient.execute(httpget);</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                <span class="comment">// 获取响应实体  </span></span><br><span class="line">                HttpEntity entity = response.getEntity();</span><br><span class="line">                System.out.<span class="built_in">println</span>(<span class="string">"--------------------------------------"</span>);</span><br><span class="line">                <span class="comment">// 打印响应状态  </span></span><br><span class="line">                System.out.<span class="built_in">println</span>(response.getStatusLine());</span><br><span class="line">                <span class="keyword">if</span> (entity != <span class="keyword">null</span>) &#123;</span><br><span class="line">                    <span class="comment">// 打印响应内容长度  </span></span><br><span class="line">                    System.out.<span class="built_in">println</span>(<span class="string">"Response content length: "</span> + entity.getContentLength());</span><br><span class="line">                    <span class="comment">// 打印响应内容  </span></span><br><span class="line">                    System.out.<span class="built_in">println</span>(<span class="string">"Response content: "</span> + EntityUtils.toString(entity));</span><br><span class="line">                &#125;</span><br><span class="line">                System.out.<span class="built_in">println</span>(<span class="string">"------------------------------------"</span>);</span><br><span class="line">            &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">                response.close();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (ClientProtocolException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125; <span class="keyword">catch</span> (ParseException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">            <span class="comment">// 关闭连接,释放资源  </span></span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                httpclient.close();</span><br><span class="line">            &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span><br><span class="line">     * 上传文件</span><br><span class="line">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> upload() &#123;</span><br><span class="line">        CloseableHttpClient httpclient = HttpClients.createDefault();</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            HttpPost httppost = <span class="keyword">new</span> HttpPost(<span class="string">"http://localhost:8080/myDemo/Ajax/serivceFile.action"</span>);</span><br><span class="line"></span><br><span class="line">            FileBody bin = <span class="keyword">new</span> FileBody(<span class="keyword">new</span> File(<span class="string">"F:\\image\\sendpix0.jpg"</span>));</span><br><span class="line">            StringBody comment = <span class="keyword">new</span> StringBody(<span class="string">"A binary file of some kind"</span>, ContentType.TEXT_PLAIN);</span><br><span class="line"></span><br><span class="line">            HttpEntity reqEntity = MultipartEntityBuilder.create().addPart(<span class="string">"bin"</span>, bin).addPart(<span class="string">"comment"</span>, comment).build();</span><br><span class="line"></span><br><span class="line">            httppost.setEntity(reqEntity);</span><br><span class="line"></span><br><span class="line">            System.out.<span class="built_in">println</span>(<span class="string">"executing request "</span> + httppost.getRequestLine());</span><br><span class="line">            CloseableHttpResponse response = httpclient.execute(httppost);</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                System.out.<span class="built_in">println</span>(<span class="string">"----------------------------------------"</span>);</span><br><span class="line">                System.out.<span class="built_in">println</span>(response.getStatusLine());</span><br><span class="line">                HttpEntity resEntity = response.getEntity();</span><br><span class="line">                <span class="keyword">if</span> (resEntity != <span class="keyword">null</span>) &#123;</span><br><span class="line">                    System.out.<span class="built_in">println</span>(<span class="string">"Response content length: "</span> + resEntity.getContentLength());</span><br><span class="line">                &#125;</span><br><span class="line">                EntityUtils.consume(resEntity);</span><br><span class="line">            &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">                response.close();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (ClientProtocolException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                httpclient.close();</span><br><span class="line">            &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Apache/" rel="tag"># Apache</a>
+          
+            <a href="/tags/HTTP/" rel="tag"># HTTP</a>
+          
+            <a href="/tags/HttpClient/" rel="tag"># HttpClient</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/12/02/reading-the-pragmatic-programmer/" rel="next" title="读书笔记之程序员修炼之道(The Pragmatic Programmer)">
+                <i class="fa fa-chevron-left"></i> 读书笔记之程序员修炼之道(The Pragmatic Programmer)
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/06/13/project-transfer-guide/" rel="prev" title="项目交接说明">
+                项目交接说明 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2015/12/23/apache-httpclient-guide/"
+           data-title="Apache HttpClient 使用备忘" data-url="http://i.lovejojo.ren/2015/12/23/apache-httpclient-guide/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/avatar.jpg"
+               alt="Steven Ren" />
+          <p class="site-author-name" itemprop="name">Steven Ren</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">13</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">17</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/renliufeng" target="_blank" title="github">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  github
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/p/1005051871729824" target="_blank" title="weibo">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  weibo
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Links
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://macshuo.com/" title="MacTalk" target="_blank">MacTalk</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://notes.iissnan.com/" title="IIssNan" target="_blank">IIssNan</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://drops.wooyun.org/" title="WooYun" target="_blank">WooYun</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.infoq.com/cn/" title="InfoQ" target="_blank">InfoQ</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.liaoxuefeng.com/" title="廖雪峰" target="_blank">廖雪峰</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.ruanyifeng.com/blog/" title="阮一峰" target="_blank">阮一峰</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.itjhwd.com/" title="IT江湖" target="_blank">IT江湖</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.raychase.net/" title="四火的唠叨" target="_blank">四火的唠叨</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#版本依赖"><span class="nav-number">1.</span> <span class="nav-text">版本依赖</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#特性"><span class="nav-number">2.</span> <span class="nav-text">特性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用方法"><span class="nav-number">3.</span> <span class="nav-text">使用方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码示例"><span class="nav-number">4.</span> <span class="nav-text">代码示例</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Steven Ren</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+  
+  <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"renliufeng"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
