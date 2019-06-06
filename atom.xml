@@ -4,7 +4,7 @@
   
   <link href="/atom.xml" rel="self"/>
   <link href="http://i.lovejojo.ren/"/>
-  <updated>2019-06-06T09:53:45.000Z</updated>
+  <updated>2019-06-06T10:16:52.000Z</updated>
   <id>http://i.lovejojo.ren/</id>
   
   <author>
@@ -15,27 +15,41 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title><![CDATA[hexo-head-picture-rotate]]></title>
+    <link href="http://i.lovejojo.ren/2019/06/06/hexo-head-picture-rotate/"/>
+    <id>http://i.lovejojo.ren/2019/06/06/hexo-head-picture-rotate/</id>
+    <published>2019-06-06T10:07:13.000Z</published>
+    <updated>2019-06-06T10:16:52.000Z</updated>
+    <content type="html"><![CDATA[<p>Hexo Next主题将头像显示成圆形，鼠标放上去有旋转效果。<br>将头像显示成圆形，鼠标放上去有旋转效果。<br>找到/themes/next/source/css/_common/components/sidebar/sidebar-author.styl<br>替换其中的site-author-img和site-author-image:hover属性</p>
+<a id="more"></a>
+<h1 id="头像显示圆形">头像显示圆形</h1><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="class">.site-author-image</span> <span class="rules">&#123;</span><br><span class="line">  <span class="rule"><span class="attribute">display</span>:<span class="value"> block</span></span>;</span><br><span class="line">  <span class="rule"><span class="attribute">margin</span>:<span class="value"> <span class="number">0</span> auto</span></span>;</span><br><span class="line">  <span class="rule"><span class="attribute">padding</span>:<span class="value"> $site-author-image-padding</span></span>;</span><br><span class="line">  <span class="rule"><span class="attribute">max-width</span>:<span class="value"> $site-author-image-width</span></span>;</span><br><span class="line">  <span class="rule"><span class="attribute">height</span>:<span class="value"> $site-author-image-height</span></span>;</span><br><span class="line">  <span class="rule"><span class="attribute">border</span>:<span class="value"> site-author-image-border-color</span></span>;</span><br><span class="line">  <span class="comment">/* start*/</span></span><br><span class="line">  <span class="rule"><span class="attribute">border-radius</span>:<span class="value"> <span class="number">50%</span></span><br><span class="line">  webkit-transition: <span class="number">1.4s</span> all</span></span>;</span><br><span class="line">  <span class="rule"><span class="attribute">moz-transition</span>:<span class="value"> <span class="number">1.4s</span> all</span></span>;</span><br><span class="line">  <span class="rule"><span class="attribute">ms-transition</span>:<span class="value"> <span class="number">1.4s</span> all</span></span>;</span><br><span class="line">  <span class="rule"><span class="attribute">transition</span>:<span class="value"> <span class="number">1.4s</span> all</span></span>;</span><br><span class="line">  <span class="comment">/* end */</span></span><br><span class="line">&#125;</span></span><br></pre></td></tr></table></figure>
+<h1 id="头像旋转事件">头像旋转事件</h1><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* start */</span></span><br><span class="line"><span class="class">.site-author-image</span><span class="pseudo">:hover</span> <span class="rules">&#123;</span><br><span class="line">  <span class="rule"><span class="attribute">background-color</span>:<span class="value"> <span class="hexcolor">#55DAE1</span></span></span>;</span><br><span class="line">  <span class="rule"><span class="attribute">webkit-transform</span>:<span class="value"> <span class="function">rotate</span>(<span class="number">360deg</span>) <span class="function">scale</span>(<span class="number">1.1</span>)</span></span>;</span><br><span class="line">  <span class="rule"><span class="attribute">moz-transform</span>:<span class="value"> <span class="function">rotate</span>(<span class="number">360deg</span>) <span class="function">scale</span>(<span class="number">1.1</span>)</span></span>;</span><br><span class="line">  <span class="rule"><span class="attribute">ms-transform</span>:<span class="value"> <span class="function">rotate</span>(<span class="number">360deg</span>) <span class="function">scale</span>(<span class="number">1.1</span>)</span></span>;</span><br><span class="line">  <span class="rule"><span class="attribute">transform</span>:<span class="value"> <span class="function">rotate</span>(<span class="number">360deg</span>) <span class="function">scale</span>(<span class="number">1.1</span>)</span></span>;</span><br><span class="line">&#125;</span></span><br><span class="line"><span class="comment">/* end */</span></span><br></pre></td></tr></table></figure>]]></content>
+    <summary type="html">
+    <![CDATA[<p>Hexo Next主题将头像显示成圆形，鼠标放上去有旋转效果。<br>将头像显示成圆形，鼠标放上去有旋转效果。<br>找到/themes/next/source/css/_common/components/sidebar/sidebar-author.styl<br>替换其中的site-author-img和site-author-image:hover属性</p>]]>
+    
+    </summary>
+    
+      <category term="hexo" scheme="http://i.lovejojo.ren/tags/hexo/"/>
+    
+      <category term="博客" scheme="http://i.lovejojo.ren/categories/%E5%8D%9A%E5%AE%A2/"/>
+    
+  </entry>
+  
+  <entry>
     <title><![CDATA[ddd-change-in-trade]]></title>
     <link href="http://i.lovejojo.ren/2018/10/30/ddd-change-in-trade/"/>
     <id>http://i.lovejojo.ren/2018/10/30/ddd-change-in-trade/</id>
     <published>2018-10-30T09:51:43.000Z</published>
-    <updated>2019-06-06T09:53:45.000Z</updated>
+    <updated>2019-06-06T10:16:52.000Z</updated>
     <content type="html"><![CDATA[<blockquote>
-<p>互联网行业追求“快速迭代”，在整个过程中，用户的需求总是善变的，那系统领域中又有哪些是不变与易变的呢。</p>
+<p>互联网行业追求“快速迭代”，在整个过程中，用户的需求总是善变的，那系统领域中又有哪些是不变与易变的呢。<br>针对到店综合多种行业各种不同的交易流程进行分析，我们基本可以归纳出：<br>领域源于需求，但高于需求。相对于善变的用户需求而言，领域知识和领域模型本身是相对“静止”的，是“不变”的，会随着需求逐步演进。<br><a id="more"></a></p>
 </blockquote>
-<p>针对到店综合多种行业各种不同的交易流程进行分析，我们基本可以归纳出：</p>
-<p>领域源于需求，但高于需求。相对于善变的用户需求而言，领域知识和领域模型本身是相对“静止”的，是“不变”的，会随着需求逐步演进。</p>
-<h2 id="问题与挑战">问题与挑战</h2><p>（1）到综行业多，同一种类型的业务差异也很大</p>
-<pre><code>到综涉及结婚、丽人、亲子、休娱等<span class="number">10</span>+大小BU，几十种行业，不同的行业有不同的玩法。即使是同一种预订业务，对于每种行业预订的商品、预订流程、结算流程，都有差异。比如ktv行业重时间包房管理，酒吧预订关注与订座位，体验课关注课程的时间预订。
-</code></pre><p>（2）业务交易形态多样化</p>
-<pre><code>不同的业务交易形态开始产生，比如丽人医美行业客单量大，项目重决策，团购就不太适合，衍生出线上预付定金，到店付尾款的模式。另外丽人美甲、足疗按摩等行业用户层面更愿意带客，所以从团购衍生出拼团的业务形态。另外还有买单的场景， 不同的业务形态，发货的时间点、方式，核销的时间点、结算的逻辑都有差异。
-</code></pre><p>（3）需要支持的平台能力丰富</p>
-<pre><code>交易流程整个环节中，需要对接各样的通用平台能力，例如点评-美团订单中心，客服系统、UGC评价。这么多业务，业务总会有一些定制化需求，如何能够统一快速支持，是一个挑战。
-</code></pre><h2 id="核心思路与解法">核心思路与解法</h2><pre><code>需求是千变万化的，不同的业务，不同的流程，如何能够稳定快速地支撑业务的需求是关键，主要考虑从以下两方面来进行。首先梳理出业务中的不变量，定下整体的领域模型与框架，再考虑通过配置化、开放定制化等能力去支撑业务定制化的需求。
-</code></pre><h3 id="梳理业务中的不变量">梳理业务中的不变量</h3><pre><code>针对第一个问题，项目初期，我们计划搭建一套通用的预订交易流程系统，但是虽然是预订业务，每个<span class="keyword">BU都会有差异。所以我们针对已有的定制开发的KTV预订和足疗预订去做了分析和总结，判断整个预订行业中有哪些是可以抽象出通用能力的。首先我们基于现有的部分需求，整理出每个BU的预订流程图，最后发现对于预订而言，整个流程是相似的，较大的差异性主要在于预订的商品和接单的流程。基于此会发现订单、商品、购买接单、核销、结算这几个大模块都是通用的。整个需要提供较多定制能力的模块主要在于商品模型与接单的模型。确定好方向之后，我们再对于子领域进行更细粒度的分析，在接单模型中，我们将接单规则配置和业务逻辑拆分。接单的逻辑可能会变，但接单领域模型里接单的规则配置确是可以固定不变的。
-</span>
-在通用预订的交易流程系统基本完善之后，我们面临着第二个问题，越来越多的业务形态开始出现。以拼团为例，在预订交易流程的基础上，我们发现整体的交易流程的模型都一样可以支持，有较大差异点仅在于购买流程上。针对于拼团，需要整个拼团拼团成功，才会真正发券。后续的核销、结算流程都是一样的，针对这些不变的领域，仅需要对业务进行扩充，就可以支持。在支持多种交易形态的过程中，我们发现已有的对接的一些平台能力，例如客服、评价、诚信等，都会有些差异。都可以采取一样的思路，先抽象出不变的部分，再针对有变化的部分通过配置化等方式支持特殊的定制。
-</code></pre><h3 id="快速支撑不断变化的需求">快速支撑不断变化的需求</h3><p>（1）不同业务需要支持的不同场景</p>
+<h2 id="问题与挑战">问题与挑战</h2><p>（1）到综行业多，同一种类型的业务差异也很大<br>        到综涉及结婚、丽人、亲子、休娱等10+大小BU，几十种行业，不同的行业有不同的玩法。即使是同一种预订业务，对于每种行业预订的商品、预订流程、结算流程，都有差异。比如ktv行业重时间包房管理，酒吧预订关注与订座位，体验课关注课程的时间预订。</p>
+<p>（2）业务交易形态多样化<br>       不同的业务交易形态开始产生，比如丽人医美行业客单量大，项目重决策，团购就不太适合，衍生出线上预付定金，到店付尾款的模式。另外丽人美甲、足疗按摩等行业用户层面更愿意带客，所以从团购衍生出拼团的业务形态。另外还有买单的场景， 不同的业务形态，发货的时间点、方式，核销的时间点、结算的逻辑都有差异。</p>
+<p>（3）需要支持的平台能力丰富<br>       交易流程整个环节中，需要对接各样的通用平台能力，例如点评-美团订单中心，客服系统、UGC评价。这么多业务，业务总会有一些定制化需求，如何能够统一快速支持，是一个挑战。</p>
+<h2 id="核心思路与解法">核心思路与解法</h2><p>需求是千变万化的，不同的业务，不同的流程，如何能够稳定快速地支撑业务的需求是关键，主要考虑从以下两方面来进行。首先梳理出业务中的不变量，定下整体的领域模型与框架，再考虑通过配置化、开放定制化等能力去支撑业务定制化的需求。</p>
+<h3 id="梳理业务中的不变量">梳理业务中的不变量</h3><p>针对第一个问题，项目初期，我们计划搭建一套通用的预订交易流程系统，但是虽然是预订业务，每个BU都会有差异。所以我们针对已有的定制开发的KTV预订和足疗预订去做了分析和总结，判断整个预订行业中有哪些是可以抽象出通用能力的。首先我们基于现有的部分需求，整理出每个BU的预订流程图，最后发现对于预订而言，整个流程是相似的，较大的差异性主要在于预订的商品和接单的流程。基于此会发现订单、商品、购买接单、核销、结算这几个大模块都是通用的。整个需要提供较多定制能力的模块主要在于商品模型与接单的模型。确定好方向之后，我们再对于子领域进行更细粒度的分析，在接单模型中，我们将接单规则配置和业务逻辑拆分。接单的逻辑可能会变，但接单领域模型里接单的规则配置确是可以固定不变的。<br>在通用预订的交易流程系统基本完善之后，我们面临着第二个问题，越来越多的业务形态开始出现。以拼团为例，在预订交易流程的基础上，我们发现整体的交易流程的模型都一样可以支持，有较大差异点仅在于购买流程上。针对于拼团，需要整个拼团拼团成功，才会真正发券。后续的核销、结算流程都是一样的，针对这些不变的领域，仅需要对业务进行扩充，就可以支持。在支持多种交易形态的过程中，我们发现已有的对接的一些平台能力，例如客服、评价、诚信等，都会有些差异。都可以采取一样的思路，先抽象出不变的部分，再针对有变化的部分通过配置化等方式支持特殊的定制。</p>
+<h3 id="快速支撑不断变化的需求">快速支撑不断变化的需求</h3><p>（1）不同业务需要支持的不同场景</p>
 <p>模型扩展：拼团等新业务刚出现的时候，原先模型可能无法支持的话，首先会从复用的角度去考虑对模型进行扩展。原先只支持到订单一个层级，抽象出父订单的模型-拼团，一个父订单下面会关联多个子订单。后续类似购物车等形态，都是可以通过此模型进行支持。</p>
 <p>服务扩展：一些预订业务或新业务可能涉及到第三方对接的库存发货管理，我们通过新增服务的方式，将预订的流程开放出去，给到第三方接入的能力。这一块相对独立，支持定制，且不影响主流程。</p>
 <p>（2）多样的平台能力的需求，如何稳定快速支持接入的需求</p>
@@ -95,10 +109,8 @@
 ]]></content>
     <summary type="html">
     <![CDATA[<blockquote>
-<p>互联网行业追求“快速迭代”，在整个过程中，用户的需求总是善变的，那系统领域中又有哪些是不变与易变的呢。</p>
-</blockquote>
-<p>针对到店综合多种行业各种不同的交易流程进行分析，我们基本可以归纳出：</p>
-<p>领域源于需求，但高]]>
+<p>互联网行业追求“快速迭代”，在整个过程中，用户的需求总是善变的，那系统领域中又有哪些是不变与易变的呢。<br>针对到店综合多种行业各种不同的交易流程进行分析，我们基本可以归纳出：<br>领域源于需求，但高于需求。相对于善变的用户需求而言，领域知识和领域模型本身是相对“静止”的，是“不变”的，会随着需求逐步演进。<br>]]>
+    
     </summary>
     
       <category term="ddd" scheme="http://i.lovejojo.ren/tags/ddd/"/>
@@ -112,11 +124,11 @@
     <link href="http://i.lovejojo.ren/2018/06/06/cros-introduce/"/>
     <id>http://i.lovejojo.ren/2018/06/06/cros-introduce/</id>
     <published>2018-06-06T08:06:08.000Z</published>
-    <updated>2019-06-06T09:49:37.000Z</updated>
+    <updated>2019-06-06T10:16:52.000Z</updated>
     <content type="html"><![CDATA[<blockquote>
 <p>CORS是一个W3C标准，全称是”跨域资源共享”（Cross-origin resource sharing）。<br>它允许浏览器向跨源服务器，发出XMLHttpRequest请求，从而克服了AJAX只能同源使用的限制。<br>本文详细介绍CORS的内部机制。<a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS" target="_blank" rel="external">CORS官方解释</a></p>
 </blockquote>
-<h2 id="简介">简介</h2><p>CORS需要浏览器和服务器同时支持。目前，所有浏览器都支持该功能，IE浏览器不能低于IE10。<br>整个CORS通信过程，都是浏览器自动完成，不需要用户参与。对于开发者来说，CORS通信与同源的AJAX通信没有差别，代码完全一样。浏览器一旦发现AJAX请求跨源，就会自动添加一些附加的头信息，有时还会多出一次附加的请求，但用户不会有感觉。<br>因此，实现CORS通信的关键是服务器。只要服务器实现了CORS接口，就可以跨源通信。</p>
+<h2 id="简介">简介</h2><p>CORS需要浏览器和服务器同时支持。目前，所有浏览器都支持该功能，IE浏览器不能低于IE10。<br>整个CORS通信过程，都是浏览器自动完成，不需要用户参与。对于开发者来说，CORS通信与同源的AJAX通信没有差别，代码完全一样。浏览器一旦发现AJAX请求跨源，就会自动添加一些附加的头信息，有时还会多出一次附加的请求，但用户不会有感觉。<br>因此，实现CORS通信的关键是服务器。只要服务器实现了CORS接口，就可以跨源通信。<br><a id="more"></a></p>
 <h2 id="两种请求">两种请求</h2><p>浏览器将CORS请求分成两类：简单请求（simple request）和非简单请求（not-so-simple request）。<br>只要同时满足以下两大条件，就属于简单请求。<br>（1) 请求方法是以下三种方法之一：<br><figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">HEAD</span><br><span class="line"><span class="literal">GET</span></span><br><span class="line"><span class="keyword">POST</span></span><br></pre></td></tr></table></figure></p>
 <p>（2）HTTP的头信息不超出以下几种字段：<br><figure class="highlight fortran"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Accept</span><br><span class="line">Accept-Language</span><br><span class="line">Content-Language</span><br><span class="line">Last-Event-ID</span><br><span class="line">Content-<span class="keyword">Type</span>：只限于三个值application/x-www-<span class="keyword">form</span>-urlencoded、multipart/<span class="keyword">form</span>-<span class="type">data</span>、text/plain</span><br></pre></td></tr></table></figure></p>
 <p>凡是不同时满足上面两个条件，就属于非简单请求。浏览器对这两种请求的处理，是不一样的。</p>
@@ -157,7 +169,10 @@
 ]]></content>
     <summary type="html">
     <![CDATA[<blockquote>
-<p>CORS是一个W3C标准，全称是”跨域资源共享”（Cross-origin resource sharing）。<br>它允许浏览器向跨源服务器，发出XMLHttpRequest请求，从而克服了AJAX只能同源使用的限制。<br>本文详细介绍COR]]>
+<p>CORS是一个W3C标准，全称是”跨域资源共享”（Cross-origin resource sharing）。<br>它允许浏览器向跨源服务器，发出XMLHttpRequest请求，从而克服了AJAX只能同源使用的限制。<br>本文详细介绍CORS的内部机制。<a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS">CORS官方解释</a></p>
+</blockquote>
+<h2 id="简介">简介</h2><p>CORS需要浏览器和服务器同时支持。目前，所有浏览器都支持该功能，IE浏览器不能低于IE10。<br>整个CORS通信过程，都是浏览器自动完成，不需要用户参与。对于开发者来说，CORS通信与同源的AJAX通信没有差别，代码完全一样。浏览器一旦发现AJAX请求跨源，就会自动添加一些附加的头信息，有时还会多出一次附加的请求，但用户不会有感觉。<br>因此，实现CORS通信的关键是服务器。只要服务器实现了CORS接口，就可以跨源通信。<br>]]>
+    
     </summary>
     
       <category term="CORS" scheme="http://i.lovejojo.ren/tags/CORS/"/>
@@ -171,11 +186,12 @@
     <link href="http://i.lovejojo.ren/2017/06/06/hexo-insert-picture/"/>
     <id>http://i.lovejojo.ren/2017/06/06/hexo-insert-picture/</id>
     <published>2017-06-06T09:57:55.000Z</published>
-    <updated>2019-06-06T10:02:31.000Z</updated>
+    <updated>2019-06-06T10:16:52.000Z</updated>
     <content type="html"><![CDATA[<p>在网上查了一下有以下几种方式往hexo文章中插入图片</p>
 <p>## 本地引用</p>
 <h3 id="绝对路径">绝对路径</h3><p>当Hexo项目中只用到少量图片时，可以将图片统一放在source/images文件夹中，通过markdown语法访问它们。对于source/images/image.jpg这张图片可以用以下语法访问到<br><figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">!<span class="attr_selector">[]</span>(/images/image.jpg)</span><br></pre></td></tr></table></figure></p>
 <p>图片既可以在首页内容中访问到，也可以在文章正文中访问到。</p>
+<a id="more"></a>
 <h3 id="相对路径">相对路径</h3><p>图片除了可以放在统一的images文件夹中，还可以放在文章自己的目录中。文章的目录可以通过配置博客根目录下的_config.yml来生成。<br><figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">post_asset_folder:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure></p>
 <p>将_config.yml文件中的配置项post_asset_folder设为true后，执行命令$ hexo new post_name，在source/_posts中会生成文章post_name.md和同名文件夹post_name。将图片资源放在post_name中，文章就可以使用相对路径引用图片资源了。_posts/post_name/image.jpg这张照片可以用以下方式访问：<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">!<span class="attr_selector">[]</span>(<span class="tag">image</span><span class="class">.jpg</span>)</span><br></pre></td></tr></table></figure></p>
 <p>上述markdown的引用方式，图片只能在文章中显示，但无法在首页中正常显示。<br>如果希望图片在文章和首页中同时显示，可以使用标签插件语法。_posts/post_name/image.jpg这张照片可以用以下方式访问：</p>
@@ -188,7 +204,9 @@
     <summary type="html">
     <![CDATA[<p>在网上查了一下有以下几种方式往hexo文章中插入图片</p>
 <p>## 本地引用</p>
-<h3 id="绝对路径">绝对路径</h3><p>当Hexo项目中只用到少量图片时，可以将图片统一放在source/images文件夹中，通过markdown语法访问它们。对于s]]>
+<h3 id="绝对路径">绝对路径</h3><p>当Hexo项目中只用到少量图片时，可以将图片统一放在source/images文件夹中，通过markdown语法访问它们。对于source/images/image.jpg这张图片可以用以下语法访问到<br><figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">!<span class="attr_selector">[]</span>(/images/image.jpg)</span><br></pre></td></tr></table></figure></p>
+<p>图片既可以在首页内容中访问到，也可以在文章正文中访问到。</p>]]>
+    
     </summary>
     
       <category term="hexo" scheme="http://i.lovejojo.ren/tags/hexo/"/>

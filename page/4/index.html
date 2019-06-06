@@ -74,7 +74,7 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="maven," />
+  <meta name="keywords" content="Hexo, NexT" />
 
 
 
@@ -92,16 +92,15 @@
 
 
 
-<meta name="description" content="一般一个父pom项目下面常常有好几个子pom项目模块，而且几个子模块依赖的很多jar包，比如groupId/artifactid/version都是相同的，这样有三个弊端：(1) 造成jar包重复依赖(2) 造成版本号重复依赖(3) 升级某个版本号时，要修改好几个子模块">
-<meta property="og:type" content="article">
-<meta property="og:title" content="maven 依赖管理的最佳实践">
-<meta property="og:url" content="http://i.lovejojo.ren/2017/05/27/maven-perfect-practice/index.html">
+<meta name="description">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Crazy Boy">
+<meta property="og:url" content="http://i.lovejojo.ren/page/4/index.html">
 <meta property="og:site_name" content="Crazy Boy">
-<meta property="og:description" content="一般一个父pom项目下面常常有好几个子pom项目模块，而且几个子模块依赖的很多jar包，比如groupId/artifactid/version都是相同的，这样有三个弊端：(1) 造成jar包重复依赖(2) 造成版本号重复依赖(3) 升级某个版本号时，要修改好几个子模块">
-<meta property="og:updated_time" content="2017-05-27T07:01:39.000Z">
+<meta property="og:description">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="maven 依赖管理的最佳实践">
-<meta name="twitter:description" content="一般一个父pom项目下面常常有好几个子pom项目模块，而且几个子模块依赖的很多jar包，比如groupId/artifactid/version都是相同的，这样有三个弊端：(1) 造成jar包重复依赖(2) 造成版本号重复依赖(3) 升级某个版本号时，要修改好几个子模块">
+<meta name="twitter:title" content="Crazy Boy">
+<meta name="twitter:description">
 
 
 
@@ -129,13 +128,13 @@
 
 
 
-  <link rel="canonical" href="http://i.lovejojo.ren/2017/05/27/maven-perfect-practice/"/>
+  <link rel="canonical" href="http://i.lovejojo.ren/page/4/"/>
 
 
 
 
 
-  <title>maven 依赖管理的最佳实践 | Crazy Boy</title>
+  <title>Crazy Boy</title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -171,7 +170,9 @@
     
   
 
-  <div class="container sidebar-position-left page-post-detail ">
+  <div class="container sidebar-position-left 
+   page-home 
+ ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -274,9 +275,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-
-  <div id="posts" class="posts-expand">
+  <section id="posts" class="posts-expand">
     
+      
 
   
 
@@ -285,7 +286,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://i.lovejojo.ren/2017/05/27/maven-perfect-practice/">
+    <link itemprop="mainEntityOfPage" href="http://i.lovejojo.ren/2015/11/25/hello-world/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Steven Ren">
@@ -302,7 +303,9 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">maven 依赖管理的最佳实践</h1>
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2015/11/25/hello-world/" itemprop="url">Hello World</a></h1>
         
 
         <div class="post-meta">
@@ -314,8 +317,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-27T14:56:18+08:00">
-                2017-05-27
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2015-11-25T18:20:59+08:00">
+                2015-11-25
               </time>
             
 
@@ -355,8 +358,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/05/27/maven-perfect-practice/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/05/27/maven-perfect-practice/" itemprop="commentCount"></span>
+                <a href="/2015/11/25/hello-world/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/11/25/hello-world/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -381,131 +384,58 @@
       
 
       
-        <p>一般一个父pom项目下面常常有好几个子pom项目模块，而且几个子模块依赖的很多jar包，比如groupId/artifactid/version都是相同的，这样有三个弊端：<br>(1) 造成jar包重复依赖<br>(2) 造成版本号重复依赖<br>(3) 升级某个版本号时，要修改好几个子模块</p>
-<a id="more"></a>
-<p>一、在父模块中定义全部dependencies</p>
-<p>在父模块中配置dependencies，那样所有子模块都自动继承。</p>
-<p>例如在父pom文件中定义好我们需要的全部jar：</p>
-<p>Java代码  收藏代码</p>
-<dependencies><br>    <dependency><br>      <groupid>junit</groupid><br>      <artifactid>junit</artifactid><br>      <version>4.8.2</version><br>      <scope>test</scope><br>    </dependency><br>    <dependency><br>      <groupid>log4j</groupid><br>      <artifactid>log4j</artifactid><br>      <version>1.2.16</version><br>    </dependency><br></dependencies>  
+        
+          
+            <p>Welcome to <a href="http://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="http://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="http://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
+<h2 id="Quick_Start">Quick Start</h2><h3 id="Create_a_new_post">Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
+<p>More info: <a href="http://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
+<h3 id="Run_server">Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="http://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
+<h3 id="Generate_static_files">Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="http://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
+<h3 id="Deploy_to_remote_sites">Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="http://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
 
-
-<p>这样子模块只要继承父模块就能直接使用这些jar包，不仅达到了依赖一致的目的，还省掉了大段代码。</p>
-<p>然而：这么做是有些不妥的地方，例如某个子模块，比如A不需要父模块log4j的依赖，但也直接继承了，造成了jar包臃肿，多余依赖。</p>
-<p>二、在父模块中定义全部dependencyManagement</p>
-<p>我们需要一种在父模块中定义好全部的jar包依赖，而子模块需要哪一种指定哪一种，这样既做到了集中式配置，又做到了子模块需要什么配置什么的灵活性。</p>
-<p>而dependencyManagement就可以做到。针对这个问题我们可以使用继承机制以及dependencyManagement元素就能解决这个问题。</p>
-<p>dependencyManagement只会影响现有依赖的配置，但不会引入依赖。</p>
-<p>例如我们可以在父模块中配置如下： </p>
-<p>Java代码  收藏代码</p>
-<dependencymanagement><br>  <dependencies><br>    <dependency><br>      <groupid>junit</groupid><br>      <artifactid>junit</artifactid><br>      <version>4.8.2</version><br>      <scope>test</scope><br>    </dependency><br>    <dependency><br>      <groupid>log4j</groupid><br>      <artifactid>log4j</artifactid><br>      <version>1.2.16</version><br>    </dependency><br>  </dependencies><br></dependencymanagement>  
-
-
-<p>这段配置不会给任何子模块引入依赖，但如果某个子模块需要使用JUnit和Log4j的时候，我们就可以简化依赖配置成这样：</p>
-<p>Java代码  收藏代码</p>
-<dependency><br>    <groupid>junit</groupid><br>    <artifactid>junit</artifactid><br>  </dependency><br>  <dependency><br>    <groupid>log4j</groupid><br>    <artifactid>log4j</artifactid><br></dependency>  
-
-
-<p>不要的模块，就不需要引入，而dependencyManagement完美的做到了这点。</p>
-<p>现在只需要groupId和artifactId，其它元素如version和scope都能通过继承父POM的dependencyManagement得到，如果有依赖配置了exclusions，那节省的代码就更加可观。</p>
-<p>但重点不在这，重点在于现在能够保证所有模块使用的JUnit和Log4j依赖配置是一致的。而且子模块仍然可以按需引入依赖， 如果我不配置log4j</p>
-<p>dependency，父模块中dependencyManagement下的log4j依赖不会对子模块产生任何影响。</p>
-<p>然而，如果在父模块中引入了大量的jar包依赖，这个父模块的dependencyManagement就会包含大量的依赖，如果你想把这些依赖分类以更清晰的管理，那就不可能了。</p>
-<p>三、使用import单独出dependencyManagement<br>此时为了应对父模块中引入了大量的jar包依赖造成父模块臃肿，我们需要一种可以把dependencyManagement放到外面去分开管理，这样很清晰很多，才能更好的管理更多的jar。</p>
-<p>而import scope依赖能解决这个问题。</p>
-<p>我们可以把dependencyManagement放到单独的专门用来管理依赖的POM中，然后在需要使用依赖的模块中通过import scope依赖，就可以引入dependencyManagement。</p>
-<p>1、我们可以写这样一个用于依赖管理的子模块POM：</p>
-<p>Java代码  收藏代码</p>
-<project><br>  <modelversion>4.0.0</modelversion><br>  <groupid>wang.conge.demo</groupid><br>  <artifactid>sample-dependency-infrastructure</artifactid><br>  <packaging>pom</packaging><br>  <version>1.0-SNAPSHOT</version><br>  <dependencymanagement><br>    <dependencies><br>        <dependency><br>          <groupid>junit</groupid><br>          <artifactid>junit</artifactid><br>          <version>4.8.2</version><br>          <scope>test</scope><br>        </dependency><br>        <dependency><br>          <groupid>log4j</groupid><br>          <artifactid>log4j</artifactid><br>          <version>1.2.16</version><br>        </dependency><br>    </dependencies><br>  </dependencymanagement><br></project>  
-
-
-
-
-<p>2、然后我们的父模块只需要通过非继承的方式来引入这段依赖管理配置：</p>
-<p>Java代码  收藏代码</p>
-<dependencymanagement><br>    <dependencies><br>        <dependency><br>          <groupid>wang.conge.demo</groupid><br>          <artifactid>sample-dependency-infrastructure</artifactid><br>          <version>1.0-SNAPSHOT</version><br>          <type>pom</type><br>          <scope>import</scope><br>        </dependency><br>    </dependencies><br>  </dependencymanagement>  
-
-
-<p>3、最后我们的子模块需要哪个jar包就引入哪个jar包</p>
-<p>Java代码  收藏代码</p>
-<dependency><br>   <groupid>junit</groupid><br>   <artifactid>junit</artifactid><br> </dependency><br> <dependency><br>   <groupid>log4j</groupid><br>   <artifactid>log4j</artifactid><br> </dependency>  
-
-
-<p>完美，有没有？</p>
-<p>这样，父模块的POM就会非常简洁，由专门的子模块为pom的POM来管理依赖，也契合的面向对象设计中的单一职责原则。</p>
-<p>此外，我们还能够创建多个这样的依赖管理POM，以更细化的方式管理依赖。这种做法与面向对象设计中使用组合而非继承也有点相似的味道。</p>
-<p>事实上spring-boot非常的简洁已用，也是使用import的方式来管理那么多的jar包依赖的。</p>
-
+          
+        
       
     </div>
 
     <div>
       
-        
-
-      
     </div>
 
     <div>
       
-        
-
-      
     </div>
 
     <div>
-      
-        
-
       
     </div>
 
     <footer class="post-footer">
       
-        <div class="post-tags">
-          
-            <a href="/tags/maven/" rel="tag"># maven</a>
-          
-        </div>
+
       
 
       
-        
-      
 
       
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/2017/05/24/java-project-open-source/" rel="next" title="Java项目搭建中的开源组件">
-                <i class="fa fa-chevron-left"></i> Java项目搭建中的开源组件
-              </a>
-            
-          </div>
-
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/06/06/hexo-insert-picture/" rel="prev" title="hexo博客中如何插入图片">
-                hexo博客中如何插入图片 <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
       
-
-      
+        <div class="post-eof"></div>
       
     </footer>
   </article>
 
 
+    
+  </section>
 
-    <div class="post-spread">
-      
-    </div>
-  </div>
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span>
+  </nav>
+
 
 
           </div>
@@ -513,14 +443,6 @@
 
 
           
-  <div class="comments" id="comments">
-    
-      <div class="ds-thread" data-thread-key="2017/05/27/maven-perfect-practice/"
-           data-title="maven 依赖管理的最佳实践" data-url="http://i.lovejojo.ren/2017/05/27/maven-perfect-practice/">
-      </div>
-    
-  </div>
-
 
         </div>
         
@@ -797,10 +719,6 @@
 
 
   
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
-
-
 
   
 
