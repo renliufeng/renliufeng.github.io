@@ -4,7 +4,7 @@
   
   <link href="/atom.xml" rel="self"/>
   <link href="http://i.lovejojo.ren/"/>
-  <updated>2019-06-06T10:16:52.000Z</updated>
+  <updated>2019-06-11T02:23:36.000Z</updated>
   <id>http://i.lovejojo.ren/</id>
   
   <author>
@@ -13,6 +13,24 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[next-update-to-7]]></title>
+    <link href="http://i.lovejojo.ren/2019/06/11/next-update-to-7/"/>
+    <id>http://i.lovejojo.ren/2019/06/11/next-update-to-7/</id>
+    <published>2019-06-11T02:23:03.000Z</published>
+    <updated>2019-06-11T02:23:36.000Z</updated>
+    <content type="html"><![CDATA[<p>下载 Next 6 主题，解压缩并重命名为next6，放置于 \themes\ 目录下，这样保留旧版本的 next 主题，可以随时切换回去。<br>修改站点配置文件 _config.yml，指定使用新主题</p>
+<h1 id="Extensions">Extensions</h1><h2 id="Plugins:_https://hexo-io/plugins/">Plugins: <a href="https://hexo.io/plugins/" target="_blank" rel="external">https://hexo.io/plugins/</a></h2><h2 id="Themes:_https://hexo-io/themes/">Themes: <a href="https://hexo.io/themes/" target="_blank" rel="external">https://hexo.io/themes/</a></h2><p>theme: next6<br>1<br>2<br>3<br>4<br>修改主题语言设置</p>
+<p>#language: zh-Hans  # next 5.x<br>language: zh-CN     # next 6<br>1<br>2<br>修改主题配置文件\themes\next6_config.yml，比较旧版本主题配置文件_config.yml中改动的地方，一一修改到新版本中。<br>旧版本主题个性化定制的文件复制到新版本主题对应目录下:<br>next/source/css/_custom/<em><br>next/source/css/_variables/</em><br>next/layout/_custom/*<br>执行命令:</p>
+<p>hexo clean  # 清理旧文件<br>hexo d -g   # 重新编译/发布</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>下载 Next 6 主题，解压缩并重命名为next6，放置于 \themes\ 目录下，这样保留旧版本的 next 主题，可以随时切换回去。<br>修改站点配置文件 _config.yml，指定使用新主题</p>
+<h1 id="Extensions">Extensions]]>
+    </summary>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[hexo-head-picture-rotate]]></title>
