@@ -15,11 +15,11 @@
 
 
 <html class="theme-next gemini use-motion" lang="zh-CN">
-<head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
-<meta name="theme-color" content="#222"/>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
 
 
 
@@ -44,21 +44,21 @@
 
 
 
-<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0"/>
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
 
-<link rel="stylesheet" href="/css/main.css?v="/>
-
-
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=">
+<link rel="stylesheet" href="/css/main.css?v=7.1.2">
 
 
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.1.2">
 
 
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.1.2">
 
 
-  <link rel="mask-icon" href="/images/logo.svg?v=" color="#222">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.1.2">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.1.2" color="#222">
 
 
 
@@ -71,7 +71,7 @@
   var CONFIG = {
     root: '/',
     scheme: 'Gemini',
-    version: '',
+    version: '7.1.2',
     sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
     back2top: true,
     back2top_sidebar: false,
@@ -97,11 +97,13 @@
 
 
   <meta name="description" content="一般一个父pom项目下面常常有好几个子pom项目模块，而且几个子模块依赖的很多jar包，比如groupId/artifactid/version都是相同的，这样有三个弊端：(1) 造成jar包重复依赖(2) 造成版本号重复依赖(3) 升级某个版本号时，要修改好几个子模块">
+<meta name="keywords" content="maven">
 <meta property="og:type" content="article">
 <meta property="og:title" content="maven 依赖管理的最佳实践">
 <meta property="og:url" content="http://i.lovejojo.ren/2017/05/27/maven-perfect-practice/index.html">
 <meta property="og:site_name" content="Crazy Boy">
 <meta property="og:description" content="一般一个父pom项目下面常常有好几个子pom项目模块，而且几个子模块依赖的很多jar包，比如groupId/artifactid/version都是相同的，这样有三个弊端：(1) 造成jar包重复依赖(2) 造成版本号重复依赖(3) 升级某个版本号时，要修改好几个子模块">
+<meta property="og:locale" content="zh-CN">
 <meta property="og:updated_time" content="2017-05-27T07:01:39.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="maven 依赖管理的最佳实践">
@@ -109,13 +111,13 @@
 
 
 
-  <link rel="alternate" href="/atom.xml" title="Crazy Boy" type="application/atom+xml"/>
+  <link rel="alternate" href="/atom.xml" title="Crazy Boy" type="application/atom+xml">
 
 
 
   
   
-  <link rel="canonical" href="http://i.lovejojo.ren/2017/05/27/maven-perfect-practice/"/>
+  <link rel="canonical" href="http://i.lovejojo.ren/2017/05/27/maven-perfect-practice/">
 
 
 
@@ -194,7 +196,7 @@
     <div class="custom-logo-site-title">
       <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title"></span>
+        <span class="site-title">Crazy Boy</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
@@ -231,7 +233,7 @@
 
     
 
-    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br/>首页</a>
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
 
   </li>
         
@@ -248,7 +250,7 @@
 
     
 
-    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br/>关于</a>
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
 
   </li>
         
@@ -265,7 +267,7 @@
 
     
 
-    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br/>标签</a>
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
 
   </li>
         
@@ -282,7 +284,7 @@
 
     
 
-    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br/>分类</a>
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
 
   </li>
         
@@ -299,7 +301,7 @@
 
     
 
-    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br/>归档</a>
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
 
   </li>
 
@@ -351,16 +353,16 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://i.lovejojo.ren/2017/05/27/maven-perfect-practice/"/>
+    <link itemprop="mainEntityOfPage" href="http://i.lovejojo.ren/2017/05/27/maven-perfect-practice/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Steven Ren"/>
-      <meta itemprop="description" content=""/>
-      <meta itemprop="image" content="/images/avatar.gif"/>
+      <meta itemprop="name" content="Steven Ren">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Crazy Boy"/>
+      <meta itemprop="name" content="Crazy Boy">
     </span>
 
     
@@ -453,13 +455,11 @@
       
         <p>一般一个父pom项目下面常常有好几个子pom项目模块，而且几个子模块依赖的很多jar包，比如groupId/artifactid/version都是相同的，这样有三个弊端：<br>(1) 造成jar包重复依赖<br>(2) 造成版本号重复依赖<br>(3) 升级某个版本号时，要修改好几个子模块</p>
 <a id="more"></a>
+
 <p>一、在父模块中定义全部dependencies</p>
 <p>在父模块中配置dependencies，那样所有子模块都自动继承。</p>
 <p>例如在父pom文件中定义好我们需要的全部jar：</p>
-<p>Java代码  收藏代码</p>
-<dependencies><br>    <dependency><br>      <groupid>junit</groupid><br>      <artifactid>junit</artifactid><br>      <version>4.8.2</version><br>      <scope>test</scope><br>    </dependency><br>    <dependency><br>      <groupid>log4j</groupid><br>      <artifactid>log4j</artifactid><br>      <version>1.2.16</version><br>    </dependency><br></dependencies>  
-
-
+<p>Java代码  收藏代码<br><dependencies><br>    <dependency><br>      <groupid>junit</groupid><br>      <artifactid>junit</artifactid><br>      <version>4.8.2</version><br>      <scope>test</scope><br>    </dependency><br>    <dependency><br>      <groupid>log4j</groupid><br>      <artifactid>log4j</artifactid><br>      <version>1.2.16</version><br>    </dependency><br></dependencies>  </p>
 <p>这样子模块只要继承父模块就能直接使用这些jar包，不仅达到了依赖一致的目的，还省掉了大段代码。</p>
 <p>然而：这么做是有些不妥的地方，例如某个子模块，比如A不需要父模块log4j的依赖，但也直接继承了，造成了jar包臃肿，多余依赖。</p>
 <p>二、在父模块中定义全部dependencyManagement</p>
@@ -467,15 +467,9 @@
 <p>而dependencyManagement就可以做到。针对这个问题我们可以使用继承机制以及dependencyManagement元素就能解决这个问题。</p>
 <p>dependencyManagement只会影响现有依赖的配置，但不会引入依赖。</p>
 <p>例如我们可以在父模块中配置如下： </p>
-<p>Java代码  收藏代码</p>
-<dependencymanagement><br>  <dependencies><br>    <dependency><br>      <groupid>junit</groupid><br>      <artifactid>junit</artifactid><br>      <version>4.8.2</version><br>      <scope>test</scope><br>    </dependency><br>    <dependency><br>      <groupid>log4j</groupid><br>      <artifactid>log4j</artifactid><br>      <version>1.2.16</version><br>    </dependency><br>  </dependencies><br></dependencymanagement>  
-
-
+<p>Java代码  收藏代码<br><dependencymanagement><br>  <dependencies><br>    <dependency><br>      <groupid>junit</groupid><br>      <artifactid>junit</artifactid><br>      <version>4.8.2</version><br>      <scope>test</scope><br>    </dependency><br>    <dependency><br>      <groupid>log4j</groupid><br>      <artifactid>log4j</artifactid><br>      <version>1.2.16</version><br>    </dependency><br>  </dependencies><br></dependencymanagement>  </p>
 <p>这段配置不会给任何子模块引入依赖，但如果某个子模块需要使用JUnit和Log4j的时候，我们就可以简化依赖配置成这样：</p>
-<p>Java代码  收藏代码</p>
-<dependency><br>    <groupid>junit</groupid><br>    <artifactid>junit</artifactid><br>  </dependency><br>  <dependency><br>    <groupid>log4j</groupid><br>    <artifactid>log4j</artifactid><br></dependency>  
-
-
+<p>Java代码  收藏代码<br><dependency><br>    <groupid>junit</groupid><br>    <artifactid>junit</artifactid><br>  </dependency><br>  <dependency><br>    <groupid>log4j</groupid><br>    <artifactid>log4j</artifactid><br></dependency>  </p>
 <p>不要的模块，就不需要引入，而dependencyManagement完美的做到了这点。</p>
 <p>现在只需要groupId和artifactId，其它元素如version和scope都能通过继承父POM的dependencyManagement得到，如果有依赖配置了exclusions，那节省的代码就更加可观。</p>
 <p>但重点不在这，重点在于现在能够保证所有模块使用的JUnit和Log4j依赖配置是一致的。而且子模块仍然可以按需引入依赖， 如果我不配置log4j</p>
@@ -485,22 +479,11 @@
 <p>而import scope依赖能解决这个问题。</p>
 <p>我们可以把dependencyManagement放到单独的专门用来管理依赖的POM中，然后在需要使用依赖的模块中通过import scope依赖，就可以引入dependencyManagement。</p>
 <p>1、我们可以写这样一个用于依赖管理的子模块POM：</p>
-<p>Java代码  收藏代码</p>
-<project><br>  <modelversion>4.0.0</modelversion><br>  <groupid>wang.conge.demo</groupid><br>  <artifactid>sample-dependency-infrastructure</artifactid><br>  <packaging>pom</packaging><br>  <version>1.0-SNAPSHOT</version><br>  <dependencymanagement><br>    <dependencies><br>        <dependency><br>          <groupid>junit</groupid><br>          <artifactid>junit</artifactid><br>          <version>4.8.2</version><br>          <scope>test</scope><br>        </dependency><br>        <dependency><br>          <groupid>log4j</groupid><br>          <artifactid>log4j</artifactid><br>          <version>1.2.16</version><br>        </dependency><br>    </dependencies><br>  </dependencymanagement><br></project>  
-
-
-
-
+<p>Java代码  收藏代码<br><project><br>  <modelversion>4.0.0</modelversion><br>  <groupid>wang.conge.demo</groupid><br>  <artifactid>sample-dependency-infrastructure</artifactid><br>  <packaging>pom</packaging><br>  <version>1.0-SNAPSHOT</version><br>  <dependencymanagement><br>    <dependencies><br>        <dependency><br>          <groupid>junit</groupid><br>          <artifactid>junit</artifactid><br>          <version>4.8.2</version><br>          <scope>test</scope><br>        </dependency><br>        <dependency><br>          <groupid>log4j</groupid><br>          <artifactid>log4j</artifactid><br>          <version>1.2.16</version><br>        </dependency><br>    </dependencies><br>  </dependencymanagement><br></project>  </p>
 <p>2、然后我们的父模块只需要通过非继承的方式来引入这段依赖管理配置：</p>
-<p>Java代码  收藏代码</p>
-<dependencymanagement><br>    <dependencies><br>        <dependency><br>          <groupid>wang.conge.demo</groupid><br>          <artifactid>sample-dependency-infrastructure</artifactid><br>          <version>1.0-SNAPSHOT</version><br>          <type>pom</type><br>          <scope>import</scope><br>        </dependency><br>    </dependencies><br>  </dependencymanagement>  
-
-
+<p>Java代码  收藏代码<br><dependencymanagement><br>    <dependencies><br>        <dependency><br>          <groupid>wang.conge.demo</groupid><br>          <artifactid>sample-dependency-infrastructure</artifactid><br>          <version>1.0-SNAPSHOT</version><br>          <type>pom</type><br>          <scope>import</scope><br>        </dependency><br>    </dependencies><br>  </dependencymanagement>  </p>
 <p>3、最后我们的子模块需要哪个jar包就引入哪个jar包</p>
-<p>Java代码  收藏代码</p>
-<dependency><br>   <groupid>junit</groupid><br>   <artifactid>junit</artifactid><br> </dependency><br> <dependency><br>   <groupid>log4j</groupid><br>   <artifactid>log4j</artifactid><br> </dependency>  
-
-
+<p>Java代码  收藏代码<br><dependency><br>   <groupid>junit</groupid><br>   <artifactid>junit</artifactid><br> </dependency><br> <dependency><br>   <groupid>log4j</groupid><br>   <artifactid>log4j</artifactid><br> </dependency>  </p>
 <p>完美，有没有？</p>
 <p>这样，父模块的POM就会非常简洁，由专门的子模块为pom的POM来管理依赖，也契合的面向对象设计中的单一职责原则。</p>
 <p>此外，我们还能够创建多个这样的依赖管理POM，以更细化的方式管理依赖。这种做法与面向对象设计中使用组合而非继承也有点相似的味道。</p>
@@ -747,7 +730,7 @@
   <span class="with-love" id="animate">
     <i class="fa fa-heart"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder"></span>
+  <span class="author" itemprop="copyrightHolder">Steven Ren</span>
 
   
 
@@ -755,7 +738,7 @@
 </div>
 
 
-  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.1.1</div>
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
 
 
 
@@ -763,7 +746,7 @@
 
 
 
-  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v</div>
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.1.2</div>
 
 
 

@@ -15,11 +15,11 @@
 
 
 <html class="theme-next gemini use-motion" lang="zh-CN">
-<head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
-<meta name="theme-color" content="#222"/>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
 
 
 
@@ -44,21 +44,21 @@
 
 
 
-<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0"/>
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
 
-<link rel="stylesheet" href="/css/main.css?v="/>
-
-
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=">
+<link rel="stylesheet" href="/css/main.css?v=7.1.2">
 
 
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.1.2">
 
 
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.1.2">
 
 
-  <link rel="mask-icon" href="/images/logo.svg?v=" color="#222">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.1.2">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.1.2" color="#222">
 
 
 
@@ -71,7 +71,7 @@
   var CONFIG = {
     root: '/',
     scheme: 'Gemini',
-    version: '',
+    version: '7.1.2',
     sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
     back2top: true,
     back2top_sidebar: false,
@@ -96,35 +96,28 @@
 
 
 
-  <meta name="description" content="今天整理下以前在配置git过程中的SSH-Key共存的方法
-git的入门学习推荐廖雪峰的网站: http://www.liaoxuefeng.com
-关于多个SSH Key的共存在使用git过程中，会遇到配置多个ssh-key的共存情况，比如一个连接公司的git，一个用来连接github，或者两个github账户。这里以github和oschina两个ssh-key共存举例。
-首先配置github">
+  <meta name="description" content="今天整理下以前在配置git过程中的SSH-Key共存的方法 git的入门学习推荐廖雪峰的网站: http://www.liaoxuefeng.com 关于多个SSH Key的共存在使用git过程中，会遇到配置多个ssh-key的共存情况，比如一个连接公司的git，一个用来连接github，或者两个github账户。这里以github和oschina两个ssh-key共存举例。 首先配置github">
+<meta name="keywords" content="ssh,git">
 <meta property="og:type" content="article">
 <meta property="og:title" content="配置git多SSH-Key共存">
 <meta property="og:url" content="http://i.lovejojo.ren/2015/11/25/git-ssh-key/index.html">
 <meta property="og:site_name" content="Crazy Boy">
-<meta property="og:description" content="今天整理下以前在配置git过程中的SSH-Key共存的方法
-git的入门学习推荐廖雪峰的网站: http://www.liaoxuefeng.com
-关于多个SSH Key的共存在使用git过程中，会遇到配置多个ssh-key的共存情况，比如一个连接公司的git，一个用来连接github，或者两个github账户。这里以github和oschina两个ssh-key共存举例。
-首先配置github">
+<meta property="og:description" content="今天整理下以前在配置git过程中的SSH-Key共存的方法 git的入门学习推荐廖雪峰的网站: http://www.liaoxuefeng.com 关于多个SSH Key的共存在使用git过程中，会遇到配置多个ssh-key的共存情况，比如一个连接公司的git，一个用来连接github，或者两个github账户。这里以github和oschina两个ssh-key共存举例。 首先配置github">
+<meta property="og:locale" content="zh-CN">
 <meta property="og:updated_time" content="2015-12-02T04:02:56.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="配置git多SSH-Key共存">
-<meta name="twitter:description" content="今天整理下以前在配置git过程中的SSH-Key共存的方法
-git的入门学习推荐廖雪峰的网站: http://www.liaoxuefeng.com
-关于多个SSH Key的共存在使用git过程中，会遇到配置多个ssh-key的共存情况，比如一个连接公司的git，一个用来连接github，或者两个github账户。这里以github和oschina两个ssh-key共存举例。
-首先配置github">
+<meta name="twitter:description" content="今天整理下以前在配置git过程中的SSH-Key共存的方法 git的入门学习推荐廖雪峰的网站: http://www.liaoxuefeng.com 关于多个SSH Key的共存在使用git过程中，会遇到配置多个ssh-key的共存情况，比如一个连接公司的git，一个用来连接github，或者两个github账户。这里以github和oschina两个ssh-key共存举例。 首先配置github">
 
 
 
-  <link rel="alternate" href="/atom.xml" title="Crazy Boy" type="application/atom+xml"/>
+  <link rel="alternate" href="/atom.xml" title="Crazy Boy" type="application/atom+xml">
 
 
 
   
   
-  <link rel="canonical" href="http://i.lovejojo.ren/2015/11/25/git-ssh-key/"/>
+  <link rel="canonical" href="http://i.lovejojo.ren/2015/11/25/git-ssh-key/">
 
 
 
@@ -203,7 +196,7 @@ git的入门学习推荐廖雪峰的网站: http://www.liaoxuefeng.com
     <div class="custom-logo-site-title">
       <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title"></span>
+        <span class="site-title">Crazy Boy</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
@@ -240,7 +233,7 @@ git的入门学习推荐廖雪峰的网站: http://www.liaoxuefeng.com
 
     
 
-    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br/>首页</a>
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
 
   </li>
         
@@ -257,7 +250,7 @@ git的入门学习推荐廖雪峰的网站: http://www.liaoxuefeng.com
 
     
 
-    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br/>关于</a>
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
 
   </li>
         
@@ -274,7 +267,7 @@ git的入门学习推荐廖雪峰的网站: http://www.liaoxuefeng.com
 
     
 
-    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br/>标签</a>
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
 
   </li>
         
@@ -291,7 +284,7 @@ git的入门学习推荐廖雪峰的网站: http://www.liaoxuefeng.com
 
     
 
-    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br/>分类</a>
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
 
   </li>
         
@@ -308,7 +301,7 @@ git的入门学习推荐廖雪峰的网站: http://www.liaoxuefeng.com
 
     
 
-    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br/>归档</a>
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
 
   </li>
 
@@ -360,16 +353,16 @@ git的入门学习推荐廖雪峰的网站: http://www.liaoxuefeng.com
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://i.lovejojo.ren/2015/11/25/git-ssh-key/"/>
+    <link itemprop="mainEntityOfPage" href="http://i.lovejojo.ren/2015/11/25/git-ssh-key/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Steven Ren"/>
-      <meta itemprop="description" content=""/>
-      <meta itemprop="image" content="/images/avatar.gif"/>
+      <meta itemprop="name" content="Steven Ren">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Crazy Boy"/>
+      <meta itemprop="name" content="Crazy Boy">
     </span>
 
     
@@ -473,20 +466,27 @@ git的入门学习推荐廖雪峰的网站: http://www.liaoxuefeng.com
 
       
         <p>今天整理下以前在配置git过程中的SSH-Key共存的方法</p>
-<h2 id="git的入门学习">git的入门学习</h2><p>推荐廖雪峰的网站: <a href="http://www.liaoxuefeng.com" target="_blank" rel="external">http://www.liaoxuefeng.com</a></p>
-<h2 id="关于多个SSH_Key的共存">关于多个SSH Key的共存</h2><p>在使用git过程中，会遇到配置多个ssh-key的共存情况，比如一个连接公司的git，一个用来连接github，或者两个github账户。这里以github和oschina两个ssh-key共存举例。</p>
-<h3 id="首先配置github，生成ssh-key">首先配置github，生成ssh-key</h3><figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa -<span class="constant">C</span> “aaa<span class="variable">@gmail</span>.com” -f ~<span class="regexp">/.ssh/github</span>_id_rsa</span><br></pre></td></tr></table></figure>
-<p>过程中会要求设置密码，直接回车为空就可以了,此时会生成两个文件githubidrsa和githubidrsa.pub 为了方便区分多个ssh-key，这里我们指定名为githubidrsa，如果不指定会按照生成默认的idrsa</p>
-<h3 id="添加SSH_agent">添加SSH agent</h3><figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="label">ssh</span>-<span class="keyword">add </span>~/.ssh/github_id_rsa</span><br></pre></td></tr></table></figure>
-<p>由于在默认情况下，SSH agent只会去读取id_rsa，为了使新生成的github_id_rsa能被SSH agent读取，将github_id_rsa添加到SSH agent</p>
-<h3 id="ssh-key粘贴到github上">ssh-key粘贴到github上</h3><figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim ~<span class="regexp">/.ssh/github</span>_id_rsa.pub</span><br></pre></td></tr></table></figure>
-<p>可以查看生成的ssh-key，将ssh-key粘贴到github上,并用相同的方法生成oschina的ssh-key，并粘贴到oschina上</p>
-<h3 id="ssh共存配置">ssh共存配置</h3><figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vim ~<span class="regexp">/.ssh/config</span></span><br></pre></td></tr></table></figure>
-<p>为了让两个ssh-key共存，在/.ssh下生成一个config文件,通过config文件指定不同的私钥对应的不同git服务器<br><figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="id">#GitHub</span>(aaa<span class="variable">@gmail</span>.com)</span><br><span class="line"><span class="tag">Host</span> <span class="tag">github</span><span class="class">.com</span></span><br><span class="line"><span class="tag">HostName</span> <span class="tag">github</span><span class="class">.com</span></span><br><span class="line"><span class="tag">User</span> <span class="tag">git</span></span><br><span class="line"><span class="tag">IdentityFile</span> ~/<span class="class">.ssh</span>/<span class="tag">github_id_rsa</span> </span><br><span class="line"></span><br><span class="line"><span class="id">#OSChina</span>(bbb<span class="variable">@gmail</span>.com)</span><br><span class="line"><span class="tag">Host</span> <span class="tag">git</span><span class="class">.oschina</span><span class="class">.net</span></span><br><span class="line"><span class="tag">HostName</span> <span class="tag">git</span><span class="class">.oschina</span><span class="class">.net</span></span><br><span class="line"><span class="tag">User</span> <span class="tag">git</span></span><br><span class="line"><span class="tag">IdentityFile</span> ~/<span class="class">.ssh</span>/<span class="tag">oschina_id_rsa</span></span><br><span class="line">然后可以测试下是否成功连接</span><br></pre></td></tr></table></figure></p>
-<h3 id="检查配置是否起作用">检查配置是否起作用</h3><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ssh -T github<span class="class">.com</span></span><br><span class="line">ssh -T git<span class="class">.oschina</span><span class="class">.net</span></span><br></pre></td></tr></table></figure>
-<p>过程中会问你是否添加到knownhosts，yes即可，会在.ssh目录下生成一个known_hosts文件</p>
-<h3 id="git_config_配置">git config 配置</h3><p>需要注意一点的是，git服务一般会根据配置文件的user.name和user.email来获取作者信息(比如上面的github的aaa@gmail.com和oschina的bbb@gmail.com)，如果多账户信息不同的话，需要注意在使用前修改配置。<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#查看配置信息</span></span><br><span class="line">git config --<span class="keyword">list</span></span><br><span class="line"><span class="comment">#设置全局的name和email</span></span><br><span class="line">git config --<span class="keyword">global</span> user.name <span class="string">"xxx"</span></span><br><span class="line">git config --<span class="keyword">global</span> user.email <span class="string">"xxx.gmail.com"</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="git的入门学习"><a href="#git的入门学习" class="headerlink" title="git的入门学习"></a>git的入门学习</h2><p>推荐廖雪峰的网站: <a href="http://www.liaoxuefeng.com" target="_blank" rel="noopener">http://www.liaoxuefeng.com</a></p>
+<h2 id="关于多个SSH-Key的共存"><a href="#关于多个SSH-Key的共存" class="headerlink" title="关于多个SSH Key的共存"></a>关于多个SSH Key的共存</h2><p>在使用git过程中，会遇到配置多个ssh-key的共存情况，比如一个连接公司的git，一个用来连接github，或者两个github账户。这里以github和oschina两个ssh-key共存举例。</p>
+<h3 id="首先配置github，生成ssh-key"><a href="#首先配置github，生成ssh-key" class="headerlink" title="首先配置github，生成ssh-key"></a>首先配置github，生成ssh-key</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">ssh-keygen</span> <span class="selector-tag">-t</span> <span class="selector-tag">rsa</span> <span class="selector-tag">-C</span> “<span class="selector-tag">aaa</span>@<span class="keyword">gmail</span>.<span class="keyword">com</span>” -f ~/.ssh/github_id_rsa</span><br></pre></td></tr></table></figure>
 
+<p>过程中会要求设置密码，直接回车为空就可以了,此时会生成两个文件githubidrsa和githubidrsa.pub 为了方便区分多个ssh-key，这里我们指定名为githubidrsa，如果不指定会按照生成默认的idrsa</p>
+<h3 id="添加SSH-agent"><a href="#添加SSH-agent" class="headerlink" title="添加SSH agent"></a>添加SSH agent</h3><figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-<span class="keyword">add</span><span class="bash"> ~/.ssh/github_id_rsa</span></span><br></pre></td></tr></table></figure>
+
+<p>由于在默认情况下，SSH agent只会去读取id_rsa，为了使新生成的github_id_rsa能被SSH agent读取，将github_id_rsa添加到SSH agent</p>
+<h3 id="ssh-key粘贴到github上"><a href="#ssh-key粘贴到github上" class="headerlink" title="ssh-key粘贴到github上"></a>ssh-key粘贴到github上</h3><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim ~<span class="regexp">/.ssh/gi</span>thub_id_rsa.pub</span><br></pre></td></tr></table></figure>
+
+<p>可以查看生成的ssh-key，将ssh-key粘贴到github上,并用相同的方法生成oschina的ssh-key，并粘贴到oschina上</p>
+<h3 id="ssh共存配置"><a href="#ssh共存配置" class="headerlink" title="ssh共存配置"></a>ssh共存配置</h3><figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vim ~/.ssh/<span class="built_in">config</span></span><br></pre></td></tr></table></figure>
+
+<p>为了让两个ssh-key共存，在/.ssh下生成一个config文件,通过config文件指定不同的私钥对应的不同git服务器</p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-id">#GitHub</span>(aaa<span class="variable">@gmail</span>.com)</span><br><span class="line"><span class="selector-tag">Host</span> <span class="selector-tag">github</span><span class="selector-class">.com</span></span><br><span class="line"><span class="selector-tag">HostName</span> <span class="selector-tag">github</span><span class="selector-class">.com</span></span><br><span class="line"><span class="selector-tag">User</span> <span class="selector-tag">git</span></span><br><span class="line"><span class="selector-tag">IdentityFile</span> ~/<span class="selector-class">.ssh</span>/<span class="selector-tag">github_id_rsa</span> </span><br><span class="line"></span><br><span class="line"><span class="selector-id">#OSChina</span>(bbb<span class="variable">@gmail</span>.com)</span><br><span class="line"><span class="selector-tag">Host</span> <span class="selector-tag">git</span><span class="selector-class">.oschina</span><span class="selector-class">.net</span></span><br><span class="line"><span class="selector-tag">HostName</span> <span class="selector-tag">git</span><span class="selector-class">.oschina</span><span class="selector-class">.net</span></span><br><span class="line"><span class="selector-tag">User</span> <span class="selector-tag">git</span></span><br><span class="line"><span class="selector-tag">IdentityFile</span> ~/<span class="selector-class">.ssh</span>/<span class="selector-tag">oschina_id_rsa</span></span><br><span class="line">然后可以测试下是否成功连接</span><br></pre></td></tr></table></figure>
+
+<h3 id="检查配置是否起作用"><a href="#检查配置是否起作用" class="headerlink" title="检查配置是否起作用"></a>检查配置是否起作用</h3><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ssh -T github.com</span><br><span class="line">ssh -T git<span class="selector-class">.oschina</span><span class="selector-class">.net</span></span><br></pre></td></tr></table></figure>
+
+<p>过程中会问你是否添加到knownhosts，yes即可，会在.ssh目录下生成一个known_hosts文件</p>
+<h3 id="git-config-配置"><a href="#git-config-配置" class="headerlink" title="git config 配置"></a>git config 配置</h3><p>需要注意一点的是，git服务一般会根据配置文件的user.name和user.email来获取作者信息(比如上面的github的<a href="mailto:aaa@gmail.com" target="_blank" rel="noopener">aaa@gmail.com</a>和oschina的<a href="mailto:bbb@gmail.com" target="_blank" rel="noopener">bbb@gmail.com</a>)，如果多账户信息不同的话，需要注意在使用前修改配置。</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#查看配置信息</span></span><br><span class="line">git<span class="built_in"> config </span>--list</span><br><span class="line"><span class="comment">#设置全局的name和email</span></span><br><span class="line">git<span class="built_in"> config </span>--global user.name <span class="string">"xxx"</span></span><br><span class="line">git<span class="built_in"> config </span>--global user.email <span class="string">"xxx.gmail.com"</span></span><br></pre></td></tr></table></figure>
       
     </div>
 
@@ -512,9 +512,9 @@ git的入门学习推荐廖雪峰的网站: http://www.liaoxuefeng.com
         
         <div class="post-tags">
           
-            <a href="/tags/git/" rel="tag"># git</a>
-          
             <a href="/tags/ssh/" rel="tag"># ssh</a>
+          
+            <a href="/tags/git/" rel="tag"># git</a>
           
         </div>
       
@@ -731,7 +731,7 @@ git的入门学习推荐廖雪峰的网站: http://www.liaoxuefeng.com
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#git的入门学习"><span class="nav-number">1.</span> <span class="nav-text">git的入门学习</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#关于多个SSH_Key的共存"><span class="nav-number">2.</span> <span class="nav-text">关于多个SSH Key的共存</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#首先配置github，生成ssh-key"><span class="nav-number">2.1.</span> <span class="nav-text">首先配置github，生成ssh-key</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#添加SSH_agent"><span class="nav-number">2.2.</span> <span class="nav-text">添加SSH agent</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ssh-key粘贴到github上"><span class="nav-number">2.3.</span> <span class="nav-text">ssh-key粘贴到github上</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ssh共存配置"><span class="nav-number">2.4.</span> <span class="nav-text">ssh共存配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#检查配置是否起作用"><span class="nav-number">2.5.</span> <span class="nav-text">检查配置是否起作用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#git_config_配置"><span class="nav-number">2.6.</span> <span class="nav-text">git config 配置</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#git的入门学习"><span class="nav-number">1.</span> <span class="nav-text">git的入门学习</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#关于多个SSH-Key的共存"><span class="nav-number">2.</span> <span class="nav-text">关于多个SSH Key的共存</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#首先配置github，生成ssh-key"><span class="nav-number">2.1.</span> <span class="nav-text">首先配置github，生成ssh-key</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#添加SSH-agent"><span class="nav-number">2.2.</span> <span class="nav-text">添加SSH agent</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ssh-key粘贴到github上"><span class="nav-number">2.3.</span> <span class="nav-text">ssh-key粘贴到github上</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ssh共存配置"><span class="nav-number">2.4.</span> <span class="nav-text">ssh共存配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#检查配置是否起作用"><span class="nav-number">2.5.</span> <span class="nav-text">检查配置是否起作用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#git-config-配置"><span class="nav-number">2.6.</span> <span class="nav-text">git config 配置</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -756,7 +756,7 @@ git的入门学习推荐廖雪峰的网站: http://www.liaoxuefeng.com
   <span class="with-love" id="animate">
     <i class="fa fa-heart"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder"></span>
+  <span class="author" itemprop="copyrightHolder">Steven Ren</span>
 
   
 
@@ -764,7 +764,7 @@ git的入门学习推荐廖雪峰的网站: http://www.liaoxuefeng.com
 </div>
 
 
-  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.1.1</div>
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
 
 
 
@@ -772,7 +772,7 @@ git的入门学习推荐廖雪峰的网站: http://www.liaoxuefeng.com
 
 
 
-  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v</div>
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.1.2</div>
 
 
 
